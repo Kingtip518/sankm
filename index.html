@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SănKM Vé Máy Bay</title>
+<meta name="description" content="Săn vé máy bay giá rẻ trong nước, giá cập nhật tự động nhiều lần mỗi ngày.">
+<!-- Mã Travelpayouts Drive (theo yêu cầu khi đăng ký tài khoản) -->
+<script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
+  (function () {
+    var script = document.createElement("script");
+    script.async = 1;
+    script.setAttribute("data-cmp-ab","2");
+    script.src = 'https://emrld.ltd/NTkwOTk5.js?t=590999';
+    document.head.appendChild(script);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap">
+<style>
+/* Bố cục: dải chọn chặng tối ở đầu, dưới là lịch giá theo ngày, danh sách vé, vé rẻ theo điểm đến */
+:root{
+  --bg:#F4F6F8; --surface:#FFFFFF; --ink:#15181D; --muted:#555B66; --line:#E1E5EA;
+  --accent:#E8471C; --accent-ink:#B7350F; --accent-soft:#FDEEE8;
+  --good:#0B6B44; --good-soft:#E2F3EA; --warn:#8A5A00; --warn-soft:#FFF4D6;
+  --hero:#15181D; --hero-ink:#FFFFFF; --hero-muted:#C1C7D0; --hero-chip:#272B33;
+  --field:#FFFFFF; --field-ink:#15181D;
+  --font:"Be Vietnam Pro", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#101216; --surface:#191C22; --ink:#EDF0F3; --muted:#A2A9B4; --line:#2B2F37;
+  --accent:#F2623A; --accent-ink:#FF8B67; --accent-soft:#3A2119;
+  --good:#5FD39C; --good-soft:#15302A; --warn:#F2C35B; --warn-soft:#3A2F12;
+  --hero:#090A0C; --hero-ink:#FFFFFF; --hero-muted:#B3B9C3; --hero-chip:#21252C;
+  --field:#22262D; --field-ink:#EDF0F3; color-scheme:dark}}
+*{box-sizing:border-box}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--hero)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--accent-ink)}
+button,input,select{font:inherit}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.top{background:var(--hero);color:var(--hero-ink)}
+.top .wrap{padding-top:16px;padding-bottom:32px;display:flex;flex-direction:column;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;letter-spacing:-.02em}
+.mark{width:36px;height:36px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center}
+.brand b{color:var(--accent)}
+.brand .sub{font-weight:500;font-size:15px;color:var(--hero-muted);margin-left:4px}
+.top h1{font-size:clamp(28px,6vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.03em;max-width:720px}
+.stamp{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:var(--hero-chip);color:var(--hero-muted);font-size:13px}
+.dot{width:8px;height:8px;border-radius:50%;background:#3DD68C}
+.dot.old{background:#F2C35B}
+
+.search{background:var(--surface);color:var(--ink);border-radius:16px;padding:16px;display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 140px}
+.field label{font-size:13px;font-weight:600;color:var(--muted)}
+.field select{min-height:50px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--field);color:var(--field-ink);font-size:16px;width:100%}
+.swap{flex:0 0 46px;height:50px;border-radius:10px;border:1px solid var(--line);background:var(--field);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+main .wrap{padding-top:24px;padding-bottom:56px;display:flex;flex-direction:column;gap:32px}
+.sec{display:flex;flex-direction:column;gap:14px}
+.sec h2{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.hint{font-size:14px;color:var(--muted)}
+.notice{background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:12px 14px;font-size:14px}
+
+.stats{display:flex;flex-wrap:wrap;gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;display:flex;flex-direction:column;min-width:0;flex:1 1 150px}
+.stat span{font-size:13px;color:var(--muted)}
+.stat b{font-size:18px;font-variant-numeric:tabular-nums}
+.stat b.good{color:var(--good)}
+
+.cal{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.day{flex:0 0 84px;min-height:74px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left}
+.day .d1{font-size:12px;color:var(--muted)}
+.day .d2{font-size:14px;font-weight:600}
+.day .d3{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+.day.cheap .d3{color:var(--good)}
+.day.sel{border:2px solid var(--accent);background:var(--accent-soft)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+
+.tools{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:14px;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+.list{display:flex;flex-direction:column;gap:10px}
+.fl{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between}
+.fl.sel{border:2px solid var(--accent)}
+.fl .when{display:flex;flex-direction:column;min-width:130px}
+.fl .when b{font-size:16px}
+.fl .when small{font-size:13px;color:var(--muted)}
+.fl .info{display:flex;flex-direction:column;flex:1 1 200px;min-width:0}
+.fl .info b{font-size:15px}
+.fl .info small{font-size:13px;color:var(--muted)}
+.buy{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.pr{display:flex;flex-direction:column;align-items:flex-end}
+.pr strong{font-size:21px;font-weight:800;color:var(--accent-ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.badge{font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--good-soft);color:var(--good)}
+.btn{min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border-radius:10px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:600;font-size:14px;white-space:nowrap}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:22px;text-align:center;color:var(--muted)}
+.more{align-self:center;min-height:44px;padding:0 18px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-weight:600}
+
+.dest{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.dc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px;text-align:left;cursor:pointer;color:var(--ink)}
+.dc b{font-size:16px}
+.dc span{font-size:13px;color:var(--muted)}
+.dc strong{font-size:19px;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+
+footer{background:var(--hero);color:var(--hero-muted)}
+footer .wrap{padding-top:24px;padding-bottom:24px;font-size:14px;line-height:1.6;display:flex;flex-direction:column;gap:8px}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<section class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l20-8-6 12-4-5-5 3 1-5z"/></svg></span>
+      <span>Săn<b>KM</b><span class="sub">Vé máy bay</span></span>
+    </div>
+    <h1>Vé máy bay rẻ nhất mỗi ngày, tự cập nhật.</h1>
+    <p class="stamp"><span class="dot" id="dot"></span><span id="stamp">Đang tải giá…</span></p>
+
+    <div class="search" role="group" aria-label="Chọn chặng bay">
+      <div class="field">
+        <label for="from">Điểm đi</label>
+        <select id="from"></select>
+      </div>
+      <button type="button" class="swap" id="swap" aria-label="Đổi chiều điểm đi và điểm đến">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>
+      </button>
+      <div class="field">
+        <label for="to">Điểm đến</label>
+        <select id="to"></select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <div class="wrap">
+    <p class="notice" id="notice" hidden></p>
+
+    <section class="sec" aria-labelledby="cal-h">
+      <h2 id="cal-h">Lịch giá</h2>
+      <div class="stats" id="stats"></div>
+      <div class="cal" id="cal"></div>
+      <div class="legend"><span><i style="background:var(--good)"></i>Ngày rẻ nhất</span><span><i style="background:var(--accent)"></i>Ngày đang chọn</span></div>
+    </section>
+
+    <section class="sec" aria-labelledby="res-h">
+      <h2 id="res-h">Vé rẻ nhất từng ngày</h2>
+      <div class="tools" role="group" aria-label="Sắp xếp và lọc">
+        <button type="button" class="chip" data-sort="date" aria-pressed="true">Theo ngày</button>
+        <button type="button" class="chip" data-sort="price" aria-pressed="false">Rẻ nhất trước</button>
+        <button type="button" class="chip" id="direct" aria-pressed="false">Chỉ bay thẳng</button>
+      </div>
+      <div class="list" id="list"></div>
+      <button type="button" class="more" id="more" hidden>Xem thêm ngày</button>
+    </section>
+
+    <section class="sec" aria-labelledby="dest-h">
+      <h2 id="dest-h">Vé rẻ nhất từ <span id="dest-from"></span></h2>
+      <p class="hint">Bấm để chọn chặng này.</p>
+      <div class="dest" id="dest"></div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Giá lấy từ dữ liệu Aviasales qua Travelpayouts: là giá rẻ nhất người dùng tìm thấy trong khoảng 48 giờ trước lần cập nhật, cho một người, một chiều. Giá có thể đã thay đổi, luôn kiểm tra lại khi đặt.</p>
+    <p>Trang tự lấy giá mới khoảng 3 giờ một lần.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Tên sân bay theo mã
+  var SAN_BAY={HAN:'Hà Nội',SGN:'TP. Hồ Chí Minh',DAD:'Đà Nẵng',VDO:'Vân Đồn',HPH:'Hải Phòng',PQC:'Phú Quốc',CXR:'Nha Trang',DLI:'Đà Lạt',HUI:'Huế',VCA:'Cần Thơ',VII:'Vinh',THD:'Thanh Hóa',UIH:'Quy Nhơn',BMV:'Buôn Ma Thuột',VCL:'Chu Lai',PXU:'Pleiku',TBB:'Tuy Hòa',DIN:'Điện Biên',VCS:'Côn Đảo',VKG:'Rạch Giá',CAH:'Cà Mau',VDH:'Đồng Hới'};
+  // Tên hãng bay theo mã
+  var HANG={VN:'Vietnam Airlines',VJ:'Vietjet Air',QH:'Bamboo Airways',VU:'Vietravel Airlines',BL:'Pacific Airlines'};
+  var THU=['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
+  var THU_NGAN=['CN','T2','T3','T4','T5','T6','T7'];
+  var MOI_LAN_HIEN=20;
+
+  function $(id){return document.getElementById(id);}
+  function tenSB(c){return SAN_BAY[c]||c;}
+  function tenHang(c){return HANG[c]||('Hãng '+c);}
+  function tien(v){return Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' đ';}
+  function hai(n){return (n<10?'0':'')+n;}
+  function ngayTu(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function thoiGian(m){if(!m)return '';var h=Math.floor(m/60),p=m%60;return (h?h+' giờ ':'')+(p?p+' phút':'');}
+
+  var duLieu=null;
+  var tt={from:null,to:null,sort:'date',direct:false,chon:null,hien:MOI_LAN_HIEN};
+
+  function veCuaChang(){
+    var ds=(duLieu&&duLieu.chang[tt.from+'-'+tt.to])||[];
+    if(tt.direct) ds=ds.filter(function(v){return !v.so_diem_dung;});
+    return ds;
+  }
+
+  function dienChonDiemDi(){
+    var di={};
+    Object.keys(duLieu.chang).forEach(function(k){if(duLieu.chang[k].length){di[k.split('-')[0]]=1;}});
+    var ds=Object.keys(di).sort(function(a,b){return tenSB(a).localeCompare(tenSB(b),'vi');});
+    var s=$('from'); s.innerHTML='';
+    ds.forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=tenSB(c)+' ('+c+')';s.appendChild(o);});
+    if(!tt.from||!di[tt.from]) tt.from=di.HAN?'HAN':ds[0];
+    s.value=tt.from;
+  }
+  function dienChonDiemDen(){
+    var den=[];
+    Object.keys(duLieu.chang).forEach(function(k){var p=k.split('-');if(p[0]===tt.from&&duLieu.chang[k].length)den.push(p[1]);});
+    den.sort(function(a,b){return tenSB(a).localeCompare(tenSB(b),'vi');});
+    var s=$('to'); s.innerHTML='';
+    den.forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=tenSB(c)+' ('+c+')';s.appendChild(o);});
+    if(den.indexOf(tt.to)<0) tt.to=den.indexOf('SGN')>=0?'SGN':den[0];
+    s.value=tt.to;
+  }
+
+  function veThongKe(ds){
+    var box=$('stats'); box.innerHTML='';
+    if(!ds.length)return;
+    var re=ds[0],tong=0;
+    ds.forEach(function(v){if(v.gia<re.gia)re=v;tong+=v.gia;});
+    var d=ngayTu(re.ngay);
+    var muc=[
+      ['Giá rẻ nhất',tien(re.gia),'good'],
+      ['Vào ngày',THU[d.getDay()]+' '+hai(d.getDate())+'/'+hai(d.getMonth()+1),''],
+      ['Giá trung bình',tien(tong/ds.length),''],
+      ['Số ngày có giá',ds.length+' ngày','']
+    ];
+    muc.forEach(function(m){
+      var e=document.createElement('div');e.className='stat';
+      var a=document.createElement('span');a.textContent=m[0];
+      var b=document.createElement('b');b.textContent=m[1];if(m[2])b.className=m[2];
+      e.appendChild(a);e.appendChild(b);box.appendChild(e);
+    });
+  }
+
+  function veLich(ds){
+    var box=$('cal'); box.innerHTML='';
+    if(!ds.length)return;
+    var min=Infinity; ds.forEach(function(v){if(v.gia<min)min=v.gia;});
+    ds.forEach(function(v){
+      var d=ngayTu(v.ngay);
+      var b=document.createElement('button'); b.type='button';
+      b.className='day'+(v.gia===min?' cheap':'')+(v.ngay===tt.chon?' sel':'');
+      b.setAttribute('aria-pressed',v.ngay===tt.chon?'true':'false');
+      b.setAttribute('aria-label',THU[d.getDay()]+' '+hai(d.getDate())+'/'+hai(d.getMonth()+1)+', '+tien(v.gia));
+      b.innerHTML='<span class="d1">'+THU_NGAN[d.getDay()]+'</span><span class="d2">'+hai(d.getDate())+'/'+hai(d.getMonth()+1)+'</span><span class="d3">'+Math.round(v.gia/1000)+'k</span>';
+      b.addEventListener('click',function(){
+        tt.chon=v.ngay; tt.sort='date'; dongBoNutSapXep();
+        var vt=0; veCuaChang().forEach(function(x,i){if(x.ngay===v.ngay)vt=i;});
+        if(vt>=tt.hien) tt.hien=vt+5;
+        veTatCa(true);
+      });
+      box.appendChild(b);
+    });
+  }
+
+  function veDanhSach(ds){
+    var list=$('list'); list.innerHTML='';
+    if(!ds.length){
+      var e=document.createElement('div');e.className='empty';
+      e.textContent=tt.direct?'Chưa có giá vé bay thẳng cho chặng này. Bỏ lọc "Chỉ bay thẳng" để xem thêm.':'Chưa có giá cho chặng này trong lần cập nhật gần nhất.';
+      list.appendChild(e); $('more').hidden=true; return;
+    }
+    var sx=ds.slice();
+    if(tt.sort==='price') sx.sort(function(a,b){return a.gia-b.gia;});
+    var min=Infinity; ds.forEach(function(v){if(v.gia<min)min=v.gia;});
+    sx.slice(0,tt.hien).forEach(function(v){
+      var d=ngayTu(v.ngay);
+      var el=document.createElement('article'); el.className='fl'+(v.ngay===tt.chon?' sel':''); el.id='ve-'+v.ngay;
+      var dung=v.so_diem_dung?('Có '+v.so_diem_dung+' điểm dừng'):'Bay thẳng';
+      el.innerHTML='<div class="when"><b></b><small></small></div><div class="info"><b></b><small></small></div><div class="buy"><div class="pr"></div></div>';
+      el.querySelector('.when b').textContent=THU[d.getDay()]+', '+hai(d.getDate())+'/'+hai(d.getMonth()+1)+'/'+d.getFullYear();
+      el.querySelector('.when small').textContent='Cất cánh '+v.gio;
+      el.querySelector('.info b').textContent=tenHang(v.hang)+(v.so_hieu?' · '+v.so_hieu:'');
+      el.querySelector('.info small').textContent=dung+(v.thoi_gian_phut?' · '+thoiGian(v.thoi_gian_phut):'');
+      var pr=el.querySelector('.pr');
+      if(v.gia===min){var bd=document.createElement('span');bd.className='badge';bd.textContent='Rẻ nhất';pr.appendChild(bd);}
+      var st=document.createElement('strong');st.textContent=tien(v.gia);pr.appendChild(st);
+      if(v.duong_dan){
+        var a=document.createElement('a');a.className='btn';a.href=v.duong_dan;a.target='_blank';a.rel='noopener';a.textContent='Xem vé';
+        el.querySelector('.buy').appendChild(a);
+      }
+      list.appendChild(el);
+    });
+    $('more').hidden=sx.length<=tt.hien;
+  }
+
+  function veDiemDen(){
+    $('dest-from').textContent=tenSB(tt.from);
+    var box=$('dest'); box.innerHTML='';
+    var hang=[];
+    Object.keys(duLieu.chang).forEach(function(k){
+      var p=k.split('-'); if(p[0]!==tt.from)return;
+      var ds=duLieu.chang[k]; if(!ds.length)return;
+      var re=ds[0]; ds.forEach(function(v){if(v.gia<re.gia)re=v;});
+      hang.push({den:p[1],v:re});
+    });
+    hang.sort(function(a,b){return a.v.gia-b.v.gia;});
+    hang.forEach(function(h){
+      var d=ngayTu(h.v.ngay);
+      var b=document.createElement('button');b.type='button';b.className='dc';
+      var t=document.createElement('b');t.textContent=tenSB(h.den);
+      var s=document.createElement('span');s.textContent='Rẻ nhất '+THU[d.getDay()]+' '+hai(d.getDate())+'/'+hai(d.getMonth()+1);
+      var g=document.createElement('strong');g.textContent=tien(h.v.gia);
+      b.appendChild(t);b.appendChild(s);b.appendChild(g);
+      b.addEventListener('click',function(){tt.to=h.den;$('to').value=h.den;tt.chon=h.v.ngay;tt.hien=MOI_LAN_HIEN;veTatCa(false);window.scrollTo(0,$('cal-h').getBoundingClientRect().top+window.pageYOffset-16);});
+      box.appendChild(b);
+    });
+  }
+
+  function veTatCa(cuonToiVe){
+    var ds=veCuaChang();
+    if(!tt.chon||!ds.some(function(v){return v.ngay===tt.chon;})){
+      var re=null; ds.forEach(function(v){if(!re||v.gia<re.gia)re=v;}); tt.chon=re?re.ngay:null;
+    }
+    $('cal-h').textContent='Lịch giá '+tenSB(tt.from)+' → '+tenSB(tt.to);
+    veThongKe(ds); veLich(ds); veDanhSach(ds); veDiemDen();
+    setTimeout(function(){
+      var s=$('cal').querySelector('.sel');
+      if(s&&s.scrollIntoView){try{s.scrollIntoView({block:'nearest',inline:'center'});}catch(e){}}
+      if(cuonToiVe){var v=$('ve-'+tt.chon);if(v&&v.scrollIntoView){try{v.scrollIntoView({block:'center'});}catch(e){}}}
+    },0);
+  }
+
+  function dongBoNutSapXep(){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sort]'),function(o){o.setAttribute('aria-pressed',o.getAttribute('data-sort')===tt.sort?'true':'false');});
+  }
+
+  function baoLoi(chu){var n=$('notice');n.textContent=chu;n.hidden=false;}
+
+  $('from').addEventListener('change',function(){tt.from=this.value;dienChonDiemDen();tt.chon=null;tt.hien=MOI_LAN_HIEN;veTatCa(false);});
+  $('to').addEventListener('change',function(){tt.to=this.value;tt.chon=null;tt.hien=MOI_LAN_HIEN;veTatCa(false);});
+  $('swap').addEventListener('click',function(){
+    var cu=tt.from; tt.from=tt.to; tt.to=cu;
+    if(!duLieu.chang[tt.from+'-'+tt.to]){baoLoi('Chưa có giá cho chiều ngược lại của chặng này.');tt.to=tt.from;tt.from=cu;return;}
+    $('notice').hidden=true;
+    dienChonDiemDi(); $('from').value=tt.from; dienChonDiemDen(); $('to').value=tt.to;
+    tt.chon=null; tt.hien=MOI_LAN_HIEN; veTatCa(false);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-sort]'),function(b){b.addEventListener('click',function(){tt.sort=b.getAttribute('data-sort');dongBoNutSapXep();veDanhSach(veCuaChang());});});
+  $('direct').addEventListener('click',function(){tt.direct=!tt.direct;this.setAttribute('aria-pressed',tt.direct?'true':'false');tt.chon=null;veTatCa(false);});
+  $('more').addEventListener('click',function(){tt.hien+=MOI_LAN_HIEN;veDanhSach(veCuaChang());});
+
+  fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(function(r){
+    if(!r.ok) throw new Error('Không đọc được tệp dữ liệu (mã '+r.status+').');
+    return r.json();
+  }).then(function(d){
+    duLieu=d;
+    if(!d.cap_nhat_luc||!Object.keys(d.chang||{}).length){
+      $('stamp').textContent='Chưa có dữ liệu giá';
+      baoLoi('Chưa có lần cập nhật giá nào. Hãy chạy tác vụ "Cập nhật giá vé" trên GitHub.');
+      return;
+    }
+    var t=new Date(d.cap_nhat_luc);
+    var cachGio=(Date.now()-t.getTime())/3600000;
+    $('stamp').textContent='Giá cập nhật lúc '+hai(t.getHours())+':'+hai(t.getMinutes())+' ngày '+hai(t.getDate())+'/'+hai(t.getMonth()+1);
+    if(cachGio>8){$('dot').className='dot old';baoLoi('Giá đã cũ hơn 8 giờ, lần cập nhật tự động gần đây có thể bị lỗi.');}
+    dienChonDiemDi(); dienChonDiemDen(); veTatCa(false);
+  }).catch(function(e){
+    $('stamp').textContent='Không tải được giá';
+    baoLoi(e.message);
+  });
+})();
+</script>
+</body>
+</html>

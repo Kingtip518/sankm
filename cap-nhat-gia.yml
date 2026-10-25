@@ -1,0 +1,56 @@
+# Tự động lấy giá vé mới và đăng lại trang web
+# Chạy khi: cứ 3 giờ một lần, khi bấm chạy tay, và khi sửa tệp trên nhánh main
+name: Cập nhật giá vé
+
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  cap-nhat-va-dang-trang:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.dang-trang.outputs.page_url }}
+    steps:
+      - name: Lấy mã nguồn
+        uses: actions/checkout@v4
+
+      - name: Cài Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Lấy giá vé mới
+        run: node scripts/cap-nhat-gia.js
+        env:
+          TP_TOKEN: ${{ secrets.TP_TOKEN }}
+
+      - name: Gom tệp trang web
+        run: |
+          mkdir -p _site
+          cp index.html data.json _site/
+
+      - name: Cấu hình trang
+        uses: actions/configure-pages@v5
+
+      - name: Đóng gói trang
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Đăng trang
+        id: dang-trang
+        uses: actions/deploy-pages@v4
