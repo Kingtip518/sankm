@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SănKM Vé Máy Bay</title>
-<meta name="description" content="Săn vé máy bay giá rẻ trong nước, giá cập nhật tự động nhiều lần mỗi ngày.">
+<meta name="description" content="Săn vé máy bay giá rẻ trong nước và quốc tế: lịch giá, vé một chiều, khứ hồi, hạng phổ thông, thương gia, mức giảm so với giá trung bình.">
+<meta name="theme-color" content="#101828">
 <!-- Mã Travelpayouts Drive (theo yêu cầu khi đăng ký tài khoản) -->
 <script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
   (function () {
@@ -18,125 +19,234 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap">
 <style>
-/* Bố cục: dải chọn chặng tối ở đầu, dưới là lịch giá theo ngày, danh sách vé, vé rẻ theo điểm đến */
+/* Bố cục: thanh trên (ngôn ngữ, tiền tệ) – khối tìm vé tối – ưu đãi nổi bật – lịch giá – danh sách vé – điểm đến – giải thích giá */
 :root{
-  --bg:#F4F6F8; --surface:#FFFFFF; --ink:#15181D; --muted:#555B66; --line:#E1E5EA;
-  --accent:#E8471C; --accent-ink:#B7350F; --accent-soft:#FDEEE8;
-  --good:#0B6B44; --good-soft:#E2F3EA; --warn:#8A5A00; --warn-soft:#FFF4D6;
-  --hero:#15181D; --hero-ink:#FFFFFF; --hero-muted:#C1C7D0; --hero-chip:#272B33;
-  --field:#FFFFFF; --field-ink:#15181D;
-  --font:"Be Vietnam Pro", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --bg:#F3F5F8; --surface:#FFFFFF; --surface-2:#F7F8FA; --ink:#101828; --muted:#545C6B; --faint:#8A92A0; --line:#E2E6EC;
+  --accent:#E8471C; --accent-ink:#B4330D; --accent-soft:#FDEDE7;
+  --good:#0A7A4B; --good-soft:#E1F4EA; --mid:#9A6400; --mid-soft:#FDF2DC; --high:#B4330D; --high-soft:#FBE7E1;
+  --biz:#5B3FB0; --biz-soft:#EEE9FB;
+  --hero:#101828; --hero-2:#1B2638; --hero-ink:#FFFFFF; --hero-muted:#C2C9D4;
+  --field:#FFFFFF; --field-ink:#101828;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.06);
+  --font:"Be Vietnam Pro",-apple-system,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans","Apple SD Gothic Neo","Microsoft YaHei","Yu Gothic","Malgun Gothic",Arial,sans-serif;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root{
-  --bg:#101216; --surface:#191C22; --ink:#EDF0F3; --muted:#A2A9B4; --line:#2B2F37;
-  --accent:#F2623A; --accent-ink:#FF8B67; --accent-soft:#3A2119;
-  --good:#5FD39C; --good-soft:#15302A; --warn:#F2C35B; --warn-soft:#3A2F12;
-  --hero:#090A0C; --hero-ink:#FFFFFF; --hero-muted:#B3B9C3; --hero-chip:#21252C;
-  --field:#22262D; --field-ink:#EDF0F3; color-scheme:dark}}
+  --bg:#0E1117; --surface:#171B23; --surface-2:#1D222C; --ink:#ECEFF3; --muted:#A6AEBB; --faint:#7D8593; --line:#2A303B;
+  --accent:#F2643C; --accent-ink:#FF8E6B; --accent-soft:#3A2018;
+  --good:#5ED39B; --good-soft:#132F25; --mid:#F0C25A; --mid-soft:#352A12; --high:#FF8E6B; --high-soft:#3A2018;
+  --biz:#B8A4FF; --biz-soft:#272042;
+  --hero:#07090D; --hero-2:#121822; --hero-ink:#FFFFFF; --hero-muted:#B5BCC7;
+  --field:#1F242D; --field-ink:#ECEFF3; --shadow:none; color-scheme:dark}}
 *{box-sizing:border-box}
-html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--hero)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5}
-.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+html{background:var(--hero)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.5;padding-bottom:env(safe-area-inset-bottom,0px)}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1,h2,h3{margin:0;text-wrap:balance}
 p{margin:0}
 a{color:var(--accent-ink)}
-button,input,select{font:inherit}
-a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+[hidden]{display:none!important}
 
-.top{background:var(--hero);color:var(--hero-ink)}
-.top .wrap{padding-top:16px;padding-bottom:32px;display:flex;flex-direction:column;gap:16px}
-.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;letter-spacing:-.02em}
+/* Thanh trên */
+.topbar{background:var(--hero);color:var(--hero-ink);padding-top:env(safe-area-inset-top,0px)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800;letter-spacing:-.02em;text-decoration:none;color:inherit}
 .mark{width:36px;height:36px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center}
 .brand b{color:var(--accent)}
-.brand .sub{font-weight:500;font-size:15px;color:var(--hero-muted);margin-left:4px}
-.top h1{font-size:clamp(28px,6vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.03em;max-width:720px}
-.stamp{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:var(--hero-chip);color:var(--hero-muted);font-size:13px}
-.dot{width:8px;height:8px;border-radius:50%;background:#3DD68C}
+.prefs{display:flex;gap:8px;align-items:center}
+.pref{position:relative}
+.pref select{appearance:none;-webkit-appearance:none;background:var(--hero-2);color:var(--hero-ink);border:1px solid #2E394C;border-radius:10px;min-height:40px;padding:0 30px 0 12px;font-size:14px;font-weight:600}
+.pref::after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;border-right:2px solid var(--hero-muted);border-bottom:2px solid var(--hero-muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+
+/* Khối tìm vé */
+.hero{background:linear-gradient(180deg,var(--hero) 0%,var(--hero-2) 100%);color:var(--hero-ink)}
+.hero .wrap{padding-top:18px;padding-bottom:30px;display:flex;flex-direction:column;gap:14px}
+.hero h1{font-size:clamp(26px,4.6vw,40px);line-height:1.12;font-weight:800;letter-spacing:-.025em;max-width:780px}
+.hero .sub{color:var(--hero-muted);max-width:720px}
+.stamp{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--hero-muted);font-size:13px}
+.dot{width:8px;height:8px;border-radius:50%;background:#3DD68C;flex:0 0 8px}
 .dot.old{background:#F2C35B}
+.card-search{background:var(--surface);color:var(--ink);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:14px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:3px;gap:3px;align-self:flex-start}
+.seg button{border:0;background:transparent;border-radius:9px;min-height:38px;padding:0 14px;font-weight:600;font-size:14px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.fields{display:grid;grid-template-columns:minmax(0,1fr) 46px minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr) auto;gap:8px;align-items:end}
+.f{display:flex;flex-direction:column;gap:5px;min-width:0}
+.f label,.f .lbl{font-size:12px;font-weight:600;color:var(--muted);text-transform:none}
+.f select,.f input,.paxbtn{min-height:52px;width:100%;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--field);color:var(--field-ink);font-size:15px;font-weight:600;min-width:0}
+.swap{height:52px;border-radius:12px;border:1px solid var(--line);background:var(--field);color:var(--ink);display:flex;align-items:center;justify-content:center}
+.paxbtn{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.go{min-height:52px;border:0;border-radius:12px;background:var(--accent);color:#FFFFFF;font-weight:700;font-size:16px;padding:0 22px;white-space:nowrap}
+.paxwrap{position:relative}
+.paxpanel{position:absolute;z-index:20;top:calc(100% + 6px);right:0;width:min(330px,calc(100vw - 32px));background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.18);padding:14px;display:flex;flex-direction:column;gap:12px}
+.prow{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.prow b{display:block;font-size:15px}
+.prow small{color:var(--muted);font-size:12px}
+.step{display:flex;align-items:center;gap:8px}
+.step button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface-2);font-size:18px;font-weight:700;line-height:1}
+.step button:disabled{opacity:.35;cursor:not-allowed}
+.step span{min-width:18px;text-align:center;font-weight:700}
+.paxpanel .seg{align-self:stretch;display:flex}
+.paxpanel .seg button{flex:1}
+.done{min-height:44px;border:0;border-radius:10px;background:var(--ink);color:var(--surface);font-weight:700}
+@media (max-width:900px){
+  .fields{grid-template-columns:minmax(0,1fr) 46px minmax(0,1fr)}
+  .f.date,.paxwrap{grid-column:span 1}
+  .f.date{grid-column:1/2}.paxwrap{grid-column:2/4}
+  .go{grid-column:1/-1}
+}
+@media (max-width:560px){
+  .fields{grid-template-columns:minmax(0,1fr) 46px}
+  .ffrom{grid-column:1;grid-row:1}.fto{grid-column:1;grid-row:2}
+  .swap{grid-column:2;grid-row:1/3;height:auto;align-self:stretch;margin-top:22px}
+  .f.date,.paxwrap,.go{grid-column:1/-1}
+}
 
-.search{background:var(--surface);color:var(--ink);border-radius:16px;padding:16px;display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
-.field{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1 1 140px}
-.field label{font-size:13px;font-weight:600;color:var(--muted)}
-.field select{min-height:50px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--field);color:var(--field-ink);font-size:16px;width:100%}
-.swap{flex:0 0 46px;height:50px;border-radius:10px;border:1px solid var(--line);background:var(--field);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center}
+/* Phần chính */
+main .wrap{padding-top:22px;padding-bottom:48px;display:flex;flex-direction:column;gap:30px}
+.sec{display:flex;flex-direction:column;gap:12px}
+.sec-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px}
+.sec h2{font-size:21px;font-weight:800;letter-spacing:-.02em}
+.hint{font-size:13px;color:var(--muted)}
+.notice{background:var(--mid-soft);color:var(--mid);border-radius:12px;padding:12px 14px;font-size:14px}
 
-main .wrap{padding-top:24px;padding-bottom:56px;display:flex;flex-direction:column;gap:32px}
-.sec{display:flex;flex-direction:column;gap:14px}
-.sec h2{font-size:22px;font-weight:800;letter-spacing:-.02em}
-.hint{font-size:14px;color:var(--muted)}
-.notice{background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:12px 14px;font-size:14px}
+.deals{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
+.deal{flex:0 0 212px;scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px;text-align:left;box-shadow:var(--shadow)}
+.deal .to{font-weight:700;font-size:16px}
+.deal .when{font-size:13px;color:var(--muted)}
+.deal .row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:4px}
+.deal strong{font-size:18px;color:var(--accent-ink)}
 
-.stats{display:flex;flex-wrap:wrap;gap:10px}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;display:flex;flex-direction:column;min-width:0;flex:1 1 150px}
-.stat span{font-size:13px;color:var(--muted)}
-.stat b{font-size:18px;font-variant-numeric:tabular-nums}
+.badge{display:inline-flex;align-items:center;font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.b-off{background:var(--good-soft);color:var(--good)}
+.b-best{background:var(--accent-soft);color:var(--accent-ink)}
+.b-biz{background:var(--biz-soft);color:var(--biz)}
+.b-eco{background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;display:flex;flex-direction:column;min-width:0}
+.stat span{font-size:12px;color:var(--muted)}
+.stat b{font-size:18px}
 .stat b.good{color:var(--good)}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-.cal{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
-.day{flex:0 0 84px;min-height:74px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left}
-.day .d1{font-size:12px;color:var(--muted)}
-.day .d2{font-size:14px;font-weight:600}
-.day .d3{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
-.day.cheap .d3{color:var(--good)}
+.cal{position:relative;display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x proximity}
+.day{flex:0 0 76px;scroll-snap-align:center;min-height:78px;border-radius:12px;border:1px solid var(--line);background:var(--surface);padding:7px 8px;display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left;position:relative}
+.day .d1{font-size:11px;color:var(--muted)}
+.day .d2{font-size:14px;font-weight:700}
+.day .d3{font-size:13px;font-weight:700}
+.day.lv1 .d3{color:var(--good)}.day.lv2 .d3{color:var(--mid)}.day.lv3 .d3{color:var(--high)}
+.day.lv1::after{content:"";position:absolute;left:8px;right:8px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--good)}
 .day.sel{border:2px solid var(--accent);background:var(--accent-soft)}
-.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted)}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
 
-.tools{display:flex;flex-wrap:wrap;gap:8px}
-.chip{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:14px;font-weight:500}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{min-height:38px;padding:0 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:13px;font-weight:600;color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.vsep{width:1px;height:22px;background:var(--line)}
 
 .list{display:flex;flex-direction:column;gap:10px}
-.fl{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between}
-.fl.sel{border:2px solid var(--accent)}
-.fl .when{display:flex;flex-direction:column;min-width:130px}
-.fl .when b{font-size:16px}
-.fl .when small{font-size:13px;color:var(--muted)}
-.fl .info{display:flex;flex-direction:column;flex:1 1 200px;min-width:0}
-.fl .info b{font-size:15px}
-.fl .info small{font-size:13px;color:var(--muted)}
-.buy{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.pr{display:flex;flex-direction:column;align-items:flex-end}
-.pr strong{font-size:21px;font-weight:800;color:var(--accent-ink);font-variant-numeric:tabular-nums;white-space:nowrap}
-.badge{font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--good-soft);color:var(--good)}
-.btn{min-height:44px;display:inline-flex;align-items:center;padding:0 16px;border-radius:10px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:600;font-size:14px;white-space:nowrap}
-.empty{background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:22px;text-align:center;color:var(--muted)}
-.more{align-self:center;min-height:44px;padding:0 18px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-weight:600}
+.fare{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr) auto;gap:14px 20px;align-items:center;box-shadow:var(--shadow)}
+.fare.sel{border:2px solid var(--accent)}
+.air{display:flex;gap:10px;align-items:center;min-width:0}
+.logo{width:40px;height:40px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden;flex:0 0 40px;font-size:12px;font-weight:800;color:var(--muted)}
+.logo img{width:100%;height:100%;object-fit:contain;background:#FFFFFF}
+.air .nm{display:flex;flex-direction:column;min-width:0}
+.air .nm b{font-size:14px;line-height:1.3}
+.air .nm small{font-size:12px;color:var(--muted)}
+.legs{display:flex;flex-direction:column;gap:8px;min-width:0}
+.leg{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 12px;align-items:baseline}
+.leg .lt{font-size:11px;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;grid-column:1/-1}
+.leg .dt{font-weight:700;font-size:15px;white-space:nowrap}
+.leg .info{font-size:13px;color:var(--muted);min-width:0}
+.leg .info .dir{color:var(--good);font-weight:600}
+.leg .info .stp{color:var(--mid);font-weight:600}
+.price{display:flex;flex-direction:column;align-items:flex-end;gap:3px;text-align:right}
+.price .tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.price strong{font-size:22px;font-weight:800;color:var(--accent-ink);white-space:nowrap}
+.price .per{font-size:12px;color:var(--muted)}
+.price .avg{font-size:12px;color:var(--faint)}
+.price .tot{font-size:13px;font-weight:600}
+.price .kid{font-size:12px;color:var(--muted);max-width:220px}
+.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0 18px;border-radius:10px;background:var(--accent);color:#FFFFFF;text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap;margin-top:4px}
+@media (max-width:760px){
+  .fare{grid-template-columns:minmax(0,1fr)}
+  .price{align-items:stretch;text-align:left;border-top:1px dashed var(--line);padding-top:10px}
+  .price .tags{justify-content:flex-start}
+  .price .btn{align-self:stretch}
+}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:22px;text-align:center;color:var(--muted);display:flex;flex-direction:column;gap:10px;align-items:center}
+.more{align-self:center;min-height:44px;padding:0 20px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-weight:600}
 
-.dest{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
-.dc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:4px;text-align:left;cursor:pointer;color:var(--ink)}
-.dc b{font-size:16px}
-.dc span{font-size:13px;color:var(--muted)}
-.dc strong{font-size:19px;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.dest{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.dc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:13px 14px;display:flex;flex-direction:column;gap:3px;text-align:left}
+.dc b{font-size:15px}
+.dc span{font-size:12px;color:var(--muted)}
+.dc strong{font-size:17px;color:var(--accent-ink)}
 
+.how{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.how ul{margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:14px;max-width:80ch}
 footer{background:var(--hero);color:var(--hero-muted)}
-footer .wrap{padding-top:24px;padding-bottom:24px;font-size:14px;line-height:1.6;display:flex;flex-direction:column;gap:8px}
+footer .wrap{padding-top:22px;padding-bottom:26px;font-size:13px;line-height:1.6;display:flex;flex-direction:column;gap:6px}
 @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 
-<section class="top">
+<div class="topbar">
   <div class="wrap">
-    <div class="brand">
+    <a class="brand" href="./">
       <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l20-8-6 12-4-5-5 3 1-5z"/></svg></span>
-      <span>Săn<b>KM</b><span class="sub">Vé máy bay</span></span>
+      <span>Săn<b>KM</b></span>
+    </a>
+    <div class="prefs">
+      <div class="pref"><select id="lang" aria-label="Language">
+        <option value="vi">Tiếng Việt</option><option value="en">English</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ko">한국어</option>
+      </select></div>
+      <div class="pref"><select id="cur" aria-label="Currency"></select></div>
     </div>
-    <h1>Vé máy bay rẻ nhất mỗi ngày, tự cập nhật.</h1>
-    <p class="stamp"><span class="dot" id="dot"></span><span id="stamp">Đang tải giá…</span></p>
+  </div>
+</div>
 
-    <div class="search" role="group" aria-label="Chọn chặng bay">
-      <div class="field">
-        <label for="from">Điểm đi</label>
-        <select id="from"></select>
+<section class="hero">
+  <div class="wrap">
+    <h1 data-t="h1"></h1>
+    <p class="sub" data-t="sub"></p>
+    <p class="stamp"><span class="dot" id="dot"></span><span id="stamp"></span></p>
+
+    <div class="card-search">
+      <div class="seg" role="group" id="tripSeg">
+        <button type="button" data-trip="ow" aria-pressed="true" data-t="oneWay"></button>
+        <button type="button" data-trip="rt" aria-pressed="false" data-t="roundTrip"></button>
       </div>
-      <button type="button" class="swap" id="swap" aria-label="Đổi chiều điểm đi và điểm đến">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>
-      </button>
-      <div class="field">
-        <label for="to">Điểm đến</label>
-        <select id="to"></select>
+      <div class="fields">
+        <div class="f ffrom"><label for="from" data-t="from"></label><select id="from"></select></div>
+        <button type="button" class="swap" id="swap" data-tl="swap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>
+        </button>
+        <div class="f fto"><label for="to" data-t="to"></label><select id="to"></select></div>
+        <div class="f date"><label for="date" data-t="date"></label><input id="date" type="date"></div>
+        <div class="f paxwrap">
+          <span class="lbl" data-t="travelers"></span>
+          <button type="button" class="paxbtn" id="paxbtn" aria-expanded="false" aria-controls="paxpanel"></button>
+          <div class="paxpanel" id="paxpanel" hidden>
+            <div class="prow"><div><b data-t="adults"></b><small data-t="adultsHint"></small></div><div class="step"><button type="button" data-p="a" data-d="-1">−</button><span id="pa">1</span><button type="button" data-p="a" data-d="1">+</button></div></div>
+            <div class="prow"><div><b data-t="children"></b><small data-t="childrenHint"></small></div><div class="step"><button type="button" data-p="c" data-d="-1">−</button><span id="pc">0</span><button type="button" data-p="c" data-d="1">+</button></div></div>
+            <div class="prow"><div><b data-t="infants"></b><small data-t="infantsHint"></small></div><div class="step"><button type="button" data-p="i" data-d="-1">−</button><span id="pi">0</span><button type="button" data-p="i" data-d="1">+</button></div></div>
+            <div><div class="hint" data-t="cabin" style="margin-bottom:6px"></div>
+              <div class="seg" role="group" id="cabinSeg">
+                <button type="button" data-cabin="eco" aria-pressed="true" data-t="economy"></button>
+                <button type="button" data-cabin="biz" aria-pressed="false" data-t="business"></button>
+              </div></div>
+            <button type="button" class="done" id="paxdone" data-t="done"></button>
+          </div>
+        </div>
+        <button type="button" class="go" id="go" data-t="search"></button>
       </div>
     </div>
   </div>
@@ -146,232 +256,416 @@ footer .wrap{padding-top:24px;padding-bottom:24px;font-size:14px;line-height:1.6
   <div class="wrap">
     <p class="notice" id="notice" hidden></p>
 
+    <section class="sec" id="dealsSec" aria-labelledby="deals-h">
+      <div class="sec-h"><div><h2 id="deals-h"></h2><p class="hint" data-t="dealsSub"></p></div></div>
+      <div class="deals" id="deals"></div>
+    </section>
+
     <section class="sec" aria-labelledby="cal-h">
-      <h2 id="cal-h">Lịch giá</h2>
+      <div class="sec-h"><h2 id="cal-h"></h2></div>
       <div class="stats" id="stats"></div>
       <div class="cal" id="cal"></div>
-      <div class="legend"><span><i style="background:var(--good)"></i>Ngày rẻ nhất</span><span><i style="background:var(--accent)"></i>Ngày đang chọn</span></div>
+      <div class="legend"><span><i style="background:var(--good)"></i><span data-t="lvLow"></span></span><span><i style="background:var(--mid)"></i><span data-t="lvMid"></span></span><span><i style="background:var(--high)"></i><span data-t="lvHigh"></span></span><span><i style="background:var(--accent)"></i><span data-t="legendSel"></span></span></div>
     </section>
 
     <section class="sec" aria-labelledby="res-h">
-      <h2 id="res-h">Vé rẻ nhất từng ngày</h2>
-      <div class="tools" role="group" aria-label="Sắp xếp và lọc">
-        <button type="button" class="chip" data-sort="date" aria-pressed="true">Theo ngày</button>
-        <button type="button" class="chip" data-sort="price" aria-pressed="false">Rẻ nhất trước</button>
-        <button type="button" class="chip" id="direct" aria-pressed="false">Chỉ bay thẳng</button>
+      <div class="sec-h"><h2 id="res-h" data-t="results"></h2><p class="hint" id="resCount"></p></div>
+      <div class="tools" role="group">
+        <button type="button" class="chip" data-sort="date" aria-pressed="true" data-t="sortDate"></button>
+        <button type="button" class="chip" data-sort="price" aria-pressed="false" data-t="sortPrice"></button>
+        <button type="button" class="chip" data-sort="off" aria-pressed="false" data-t="sortOff"></button>
+        <span class="vsep" aria-hidden="true"></span>
+        <button type="button" class="chip" id="direct" aria-pressed="false" data-t="directOnly"></button>
+        <span id="airChips" class="tools"></span>
       </div>
       <div class="list" id="list"></div>
-      <button type="button" class="more" id="more" hidden>Xem thêm ngày</button>
+      <button type="button" class="more" id="more" hidden data-t="more"></button>
     </section>
 
     <section class="sec" aria-labelledby="dest-h">
-      <h2 id="dest-h">Vé rẻ nhất từ <span id="dest-from"></span></h2>
-      <p class="hint">Bấm để chọn chặng này.</p>
+      <div class="sec-h"><div><h2 id="dest-h"></h2><p class="hint" data-t="destSub"></p></div></div>
       <div class="dest" id="dest"></div>
+    </section>
+
+    <section class="how" aria-labelledby="how-h">
+      <h2 id="how-h" style="font-size:18px" data-t="howTitle"></h2>
+      <ul><li data-t="how1"></li><li data-t="how2"></li><li data-t="how3"></li><li data-t="how4"></li><li data-t="how5"></li></ul>
     </section>
   </div>
 </main>
 
 <footer>
   <div class="wrap">
-    <p>Giá lấy từ dữ liệu Aviasales qua Travelpayouts: là giá rẻ nhất người dùng tìm thấy trong khoảng 48 giờ trước lần cập nhật, cho một người, một chiều. Giá có thể đã thay đổi, luôn kiểm tra lại khi đặt.</p>
-    <p>Trang tự lấy giá mới khoảng 3 giờ một lần.</p>
+    <p data-t="foot1"></p>
+    <p data-t="foot2"></p>
   </div>
 </footer>
 
 <script>
 (function(){
-  // Tên sân bay theo mã
-  var SAN_BAY={HAN:'Hà Nội',SGN:'TP. Hồ Chí Minh',DAD:'Đà Nẵng',VDO:'Vân Đồn',HPH:'Hải Phòng',PQC:'Phú Quốc',CXR:'Nha Trang',DLI:'Đà Lạt',HUI:'Huế',VCA:'Cần Thơ',VII:'Vinh',THD:'Thanh Hóa',UIH:'Quy Nhơn',BMV:'Buôn Ma Thuột',VCL:'Chu Lai',PXU:'Pleiku',TBB:'Tuy Hòa',DIN:'Điện Biên',VCS:'Côn Đảo',VKG:'Rạch Giá',CAH:'Cà Mau',VDH:'Đồng Hới'};
-  // Tên hãng bay theo mã
-  var HANG={VN:'Vietnam Airlines',VJ:'Vietjet Air',QH:'Bamboo Airways',VU:'Vietravel Airlines',BL:'Pacific Airlines'};
-  var THU=['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
-  var THU_NGAN=['CN','T2','T3','T4','T5','T6','T7'];
-  var MOI_LAN_HIEN=20;
+'use strict';
 
-  function $(id){return document.getElementById(id);}
-  function tenSB(c){return SAN_BAY[c]||c;}
-  function tenHang(c){return HANG[c]||('Hãng '+c);}
-  function tien(v){return Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' đ';}
-  function hai(n){return (n<10?'0':'')+n;}
-  function ngayTu(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
-  function thoiGian(m){if(!m)return '';var h=Math.floor(m/60),p=m%60;return (h?h+' giờ ':'')+(p?p+' phút':'');}
+/* ========== CHỮ CHO 5 NGÔN NGỮ ========== */
+var T={
+vi:{h1:'Săn vé máy bay giá rẻ trong nước và quốc tế',sub:'Lịch giá 2 tháng, vé một chiều và khứ hồi, hạng phổ thông và thương gia. Mỗi vé ghi rõ rẻ hơn giá trung bình bao nhiêu phần trăm.',
+ loading:'Đang tải giá…',updated:'Giá cập nhật lúc {t}',noData:'Chưa có dữ liệu giá',stale:'Giá đã cũ hơn 8 giờ, lần cập nhật tự động gần đây có thể bị lỗi.',loadErr:'Không tải được giá: {e}',firstRun:'Chưa có lần cập nhật giá nào. Hãy chạy tác vụ "Cập nhật giá vé" trên GitHub.',
+ oneWay:'Một chiều',roundTrip:'Khứ hồi',from:'Điểm đi',to:'Điểm đến',date:'Ngày đi',travelers:'Hành khách, hạng ghế',adults:'Người lớn',adultsHint:'Từ 12 tuổi',children:'Trẻ em',childrenHint:'Từ 2 đến 11 tuổi',infants:'Em bé',infantsHint:'Dưới 2 tuổi',cabin:'Hạng ghế',economy:'Phổ thông',business:'Thương gia',done:'Xong',search:'Tìm vé rẻ',swap:'Đổi chiều',
+ paxSum:'{a} người lớn{c}{i} · {cab}',paxC:', {n} trẻ em',paxI:', {n} em bé',
+ vn:'Việt Nam',intl:'Quốc tế',deals:'Giảm sâu nhất từ {city}',dealsSub:'So với giá trung bình của chính chặng đó trong 2 tháng tới.',noDeals:'Chưa có vé giảm sâu cho lựa chọn này.',
+ calTitle:'Lịch giá {a} → {b}',lowest:'Giá thấp nhất',onDate:'Vào ngày',average:'Giá trung bình',bestOff:'Giảm sâu nhất',days:'{n} ngày',lvLow:'Giá thấp',lvMid:'Giá vừa',lvHigh:'Giá cao',legendSel:'Ngày đang chọn',
+ results:'Vé rẻ nhất từng ngày',count:'{n} ngày có giá',sortDate:'Theo ngày',sortPrice:'Rẻ nhất trước',sortOff:'Giảm nhiều nhất',directOnly:'Chỉ bay thẳng',allAir:'Mọi hãng',
+ out:'Chiều đi',ret:'Chiều về',direct:'Bay thẳng',stops:'{n} điểm dừng',dep:'Cất cánh {t}',stay:'Ở lại {n} đêm',
+ perAdultOW:'/ 1 người lớn · một chiều',perAdultRT:'/ 1 người lớn · khứ hồi',total:'{n} người lớn: {p}',kidNote:'Giá trẻ em, em bé hiện khi đặt vé',avg:'Giá TB chặng: {p}',off:'−{n}%',offTitle:'Rẻ hơn {n}% so với giá trung bình',cheapest:'Rẻ nhất',view:'Xem vé',bizAir:'Hãng bay: xem khi đặt',
+ noFare:'Chưa có giá cho lựa chọn này trong lần cập nhật gần nhất.',noBiz:'Nguồn dữ liệu chưa có giá hạng thương gia cho chặng này.',searchDirect:'Tìm trực tiếp trên Aviasales',noDirect:'Không có vé bay thẳng trong dữ liệu. Bỏ lọc "Chỉ bay thẳng" để xem thêm.',more:'Xem thêm ngày',
+ destTitle:'Điểm đến rẻ nhất từ {city}',destSub:'Bấm để chọn chặng này.',destFrom:'Rẻ nhất {d}',
+ howTitle:'Giá trên trang được tính thế nào',
+ how1:'Giá là giá rẻ nhất người dùng Aviasales tìm thấy trong khoảng 48 giờ trước lần cập nhật, cho 1 người lớn. Giá có thể đã thay đổi, luôn kiểm tra lại khi đặt.',
+ how2:'Mức "−%" là vé đó rẻ hơn bao nhiêu so với giá trung bình của cùng chặng, cùng loại vé trong 2 tháng tới. Đây không phải mức giảm do hãng bay công bố.',
+ how3:'Nguồn không có giá riêng cho trẻ em và em bé. Khi bấm "Xem vé", trang đặt vé sẽ tính đúng số người lớn, trẻ em, em bé bạn đã chọn.',
+ how4:'Vé giá rẻ nhất thường chưa gồm hành lý ký gửi, không đổi, không hoàn, và có thể do đại lý bán. Đọc kỹ điều kiện vé trước khi thanh toán.',
+ how5:'Giá đổi sang đô la, won, yên, nhân dân tệ là giá quy đổi gần đúng theo tỷ giá lúc cập nhật; giá gốc tính bằng tiền đồng.',
+ foot1:'Dữ liệu giá: Aviasales qua Travelpayouts. Trang tự lấy giá mới nhiều lần mỗi ngày.',foot2:'SănKM không bán vé. Khi bấm "Xem vé", bạn đặt vé trên trang của đối tác.'},
+en:{h1:'Find cheap flights in Vietnam and across Asia',sub:'Two-month price calendar, one-way and round-trip, economy and business. Every fare shows how much cheaper it is than the route average.',
+ loading:'Loading prices…',updated:'Prices updated {t}',noData:'No price data yet',stale:'Prices are more than 8 hours old. The last automatic update may have failed.',loadErr:'Could not load prices: {e}',firstRun:'No price update has run yet. Run the "Cập nhật giá vé" workflow on GitHub.',
+ oneWay:'One-way',roundTrip:'Round-trip',from:'From',to:'To',date:'Departure',travelers:'Travelers, cabin',adults:'Adults',adultsHint:'12 years and over',children:'Children',childrenHint:'2 to 11 years',infants:'Infants',infantsHint:'Under 2',cabin:'Cabin class',economy:'Economy',business:'Business',done:'Done',search:'Find cheap flights',swap:'Swap',
+ paxSum:'{a} adult{as}{c}{i} · {cab}',paxC:', {n} child{cs}',paxI:', {n} infant{is}',
+ vn:'Vietnam',intl:'International',deals:'Biggest savings from {city}',dealsSub:'Compared with the average price of the same route over the next 2 months.',noDeals:'No big savings for this selection yet.',
+ calTitle:'Price calendar {a} → {b}',lowest:'Lowest price',onDate:'On',average:'Average price',bestOff:'Biggest saving',days:'{n} days',lvLow:'Low',lvMid:'Medium',lvHigh:'High',legendSel:'Selected date',
+ results:'Cheapest fare each day',count:'{n} days with prices',sortDate:'By date',sortPrice:'Cheapest first',sortOff:'Biggest saving',directOnly:'Non-stop only',allAir:'All airlines',
+ out:'Outbound',ret:'Return',direct:'Non-stop',stops:'{n} stop(s)',dep:'Departs {t}',stay:'{n} night stay',
+ perAdultOW:'/ adult · one-way',perAdultRT:'/ adult · round-trip',total:'{n} adults: {p}',kidNote:'Child and infant fares shown at booking',avg:'Route average: {p}',off:'−{n}%',offTitle:'{n}% below the route average',cheapest:'Cheapest',view:'View deal',bizAir:'Airline shown at booking',
+ noFare:'No price for this selection in the latest update.',noBiz:'The data source has no business-class prices for this route yet.',searchDirect:'Search directly on Aviasales',noDirect:'No non-stop fares in the data. Turn off "Non-stop only" to see more.',more:'Show more days',
+ destTitle:'Cheapest destinations from {city}',destSub:'Tap to select this route.',destFrom:'Cheapest {d}',
+ howTitle:'How prices on this page work',
+ how1:'Prices are the cheapest fares Aviasales users found in the 48 hours before each update, for one adult. They may have changed; always check before booking.',
+ how2:'The "−%" label shows how much cheaper a fare is than the average of the same route and fare type over the next 2 months. It is not an airline-announced discount.',
+ how3:'The source has no separate child or infant prices. When you tap "View deal", the booking site prices the exact number of adults, children and infants you chose.',
+ how4:'The cheapest fares often exclude checked baggage, cannot be changed or refunded, and may be sold by an agency. Read the fare rules before paying.',
+ how5:'Prices in USD, KRW, JPY and CNY are approximate conversions at the update-time exchange rate; original prices are in Vietnamese dong.',
+ foot1:'Price data: Aviasales via Travelpayouts. Prices refresh several times a day.',foot2:'SănKM does not sell tickets. "View deal" takes you to a partner site to book.'},
+zh:{h1:'越南国内及亚洲特价机票',sub:'两个月价格日历，单程与往返，经济舱与商务舱。每张机票都标明比该航线平均价便宜多少。',
+ loading:'正在加载价格…',updated:'价格更新于 {t}',noData:'暂无价格数据',stale:'价格已超过 8 小时未更新，最近一次自动更新可能失败。',loadErr:'无法加载价格：{e}',firstRun:'尚未进行价格更新。请在 GitHub 运行"Cập nhật giá vé"任务。',
+ oneWay:'单程',roundTrip:'往返',from:'出发地',to:'目的地',date:'出发日期',travelers:'乘客与舱位',adults:'成人',adultsHint:'12 岁及以上',children:'儿童',childrenHint:'2 至 11 岁',infants:'婴儿',infantsHint:'2 岁以下',cabin:'舱位',economy:'经济舱',business:'商务舱',done:'完成',search:'搜索特价机票',swap:'交换',
+ paxSum:'{a} 位成人{c}{i} · {cab}',paxC:'，{n} 名儿童',paxI:'，{n} 名婴儿',
+ vn:'越南',intl:'国际',deals:'{city}出发 降幅最大',dealsSub:'与同一航线未来 2 个月的平均价比较。',noDeals:'此选项暂无大幅优惠。',
+ calTitle:'{a} → {b} 价格日历',lowest:'最低价',onDate:'日期',average:'平均价',bestOff:'最大降幅',days:'{n} 天',lvLow:'低价',lvMid:'中等',lvHigh:'高价',legendSel:'已选日期',
+ results:'每日最低价机票',count:'{n} 天有价格',sortDate:'按日期',sortPrice:'价格最低',sortOff:'降幅最大',directOnly:'仅直飞',allAir:'全部航司',
+ out:'去程',ret:'返程',direct:'直飞',stops:'经停 {n} 次',dep:'{t} 起飞',stay:'停留 {n} 晚',
+ perAdultOW:'/ 每位成人 · 单程',perAdultRT:'/ 每位成人 · 往返',total:'{n} 位成人：{p}',kidNote:'儿童、婴儿票价在预订时显示',avg:'航线均价：{p}',off:'−{n}%',offTitle:'比航线平均价低 {n}%',cheapest:'最低价',view:'查看机票',bizAir:'航空公司在预订时显示',
+ noFare:'最近一次更新中没有此选项的价格。',noBiz:'数据源暂无此航线的商务舱价格。',searchDirect:'直接在 Aviasales 搜索',noDirect:'数据中没有直飞航班。关闭"仅直飞"可查看更多。',more:'显示更多日期',
+ destTitle:'从{city}出发最便宜的目的地',destSub:'点击选择该航线。',destFrom:'最低价 {d}',
+ howTitle:'本页价格说明',
+ how1:'价格为每次更新前 48 小时内 Aviasales 用户找到的最低价，按 1 位成人计算。价格可能已变动，预订前请再次确认。',
+ how2:'"−%"表示该票价比同一航线、同类机票未来 2 个月平均价低多少，并非航空公司公布的折扣。',
+ how3:'数据源没有单独的儿童和婴儿票价。点击"查看机票"后，预订网站会按您选择的成人、儿童、婴儿人数计算价格。',
+ how4:'最低价机票通常不含托运行李，不可改签或退票，且可能由代理销售。付款前请仔细阅读票价规则。',
+ how5:'美元、韩元、日元、人民币价格为按更新时汇率的近似换算；原始价格以越南盾计。',
+ foot1:'价格数据：Aviasales（通过 Travelpayouts）。每天多次自动更新。',foot2:'SănKM 不销售机票。点击"查看机票"将跳转至合作网站预订。'},
+ja:{h1:'ベトナム国内・アジア路線の格安航空券',sub:'2か月の運賃カレンダー、片道・往復、エコノミー・ビジネス。各運賃が路線平均より何％安いかを表示します。',
+ loading:'運賃を読み込み中…',updated:'運賃更新：{t}',noData:'運賃データがまだありません',stale:'運賃が 8 時間以上更新されていません。直近の自動更新が失敗した可能性があります。',loadErr:'運賃を読み込めません：{e}',firstRun:'まだ運賃の更新が行われていません。GitHub で「Cập nhật giá vé」を実行してください。',
+ oneWay:'片道',roundTrip:'往復',from:'出発地',to:'目的地',date:'出発日',travelers:'人数・座席クラス',adults:'大人',adultsHint:'12 歳以上',children:'小児',childrenHint:'2〜11 歳',infants:'幼児',infantsHint:'2 歳未満',cabin:'座席クラス',economy:'エコノミー',business:'ビジネス',done:'完了',search:'格安航空券を探す',swap:'入れ替え',
+ paxSum:'大人 {a} 名{c}{i} · {cab}',paxC:'、小児 {n} 名',paxI:'、幼児 {n} 名',
+ vn:'ベトナム',intl:'国際線',deals:'{city}発 お得な運賃',dealsSub:'同じ路線の今後 2 か月の平均運賃との比較です。',noDeals:'この条件で大きく割安な運賃はまだありません。',
+ calTitle:'{a} → {b} 運賃カレンダー',lowest:'最安値',onDate:'日付',average:'平均運賃',bestOff:'最大割安率',days:'{n} 日',lvLow:'安い',lvMid:'普通',lvHigh:'高い',legendSel:'選択中の日',
+ results:'日別の最安運賃',count:'{n} 日分の運賃',sortDate:'日付順',sortPrice:'安い順',sortOff:'割安率順',directOnly:'直行便のみ',allAir:'すべての航空会社',
+ out:'往路',ret:'復路',direct:'直行便',stops:'乗継 {n} 回',dep:'{t} 出発',stay:'{n} 泊',
+ perAdultOW:'/ 大人 1 名・片道',perAdultRT:'/ 大人 1 名・往復',total:'大人 {n} 名：{p}',kidNote:'小児・幼児運賃は予約時に表示',avg:'路線平均：{p}',off:'−{n}%',offTitle:'路線平均より {n}% 安い',cheapest:'最安',view:'運賃を見る',bizAir:'航空会社は予約時に表示',
+ noFare:'直近の更新ではこの条件の運賃がありません。',noBiz:'この路線のビジネスクラス運賃はデータにまだありません。',searchDirect:'Aviasales で直接検索',noDirect:'データに直行便がありません。「直行便のみ」を解除してください。',more:'さらに表示',
+ destTitle:'{city}発 安い行き先',destSub:'タップしてこの路線を選択。',destFrom:'最安 {d}',
+ howTitle:'このページの運賃について',
+ how1:'運賃は各更新の直前 48 時間に Aviasales の利用者が見つけた最安値で、大人 1 名分です。変動している場合があるため、予約前に必ずご確認ください。',
+ how2:'「−%」は、同じ路線・同じ種類の運賃の今後 2 か月の平均と比べた割安率です。航空会社が発表した割引率ではありません。',
+ how3:'小児・幼児の運賃はデータに含まれません。「運賃を見る」を押すと、選択した大人・小児・幼児の人数で予約サイトが計算します。',
+ how4:'最安運賃は受託手荷物なし、変更・払い戻し不可で、代理店販売の場合があります。支払い前に運賃規則をご確認ください。',
+ how5:'米ドル・ウォン・円・人民元の表示は更新時の為替レートによる概算で、元の運賃はベトナムドンです。',
+ foot1:'運賃データ：Aviasales（Travelpayouts 経由）。1 日に複数回更新。',foot2:'SănKM は航空券を販売していません。「運賃を見る」から提携サイトで予約します。'},
+ko:{h1:'베트남 국내선·아시아 노선 최저가 항공권',sub:'2개월 요금 달력, 편도·왕복, 일반석·비즈니스석. 각 요금이 노선 평균보다 몇 % 저렴한지 표시합니다.',
+ loading:'요금 불러오는 중…',updated:'요금 업데이트: {t}',noData:'아직 요금 데이터가 없습니다',stale:'요금이 8시간 넘게 갱신되지 않았습니다. 최근 자동 업데이트가 실패했을 수 있습니다.',loadErr:'요금을 불러올 수 없습니다: {e}',firstRun:'아직 요금 업데이트가 실행되지 않았습니다. GitHub에서 "Cập nhật giá vé" 작업을 실행하세요.',
+ oneWay:'편도',roundTrip:'왕복',from:'출발지',to:'도착지',date:'가는 날',travelers:'인원·좌석 등급',adults:'성인',adultsHint:'만 12세 이상',children:'소아',childrenHint:'만 2~11세',infants:'유아',infantsHint:'만 2세 미만',cabin:'좌석 등급',economy:'일반석',business:'비즈니스석',done:'완료',search:'최저가 항공권 찾기',swap:'바꾸기',
+ paxSum:'성인 {a}명{c}{i} · {cab}',paxC:', 소아 {n}명',paxI:', 유아 {n}명',
+ vn:'베트남',intl:'국제선',deals:'{city} 출발 할인 폭이 큰 항공권',dealsSub:'같은 노선의 향후 2개월 평균 요금과 비교합니다.',noDeals:'이 조건에는 아직 크게 저렴한 항공권이 없습니다.',
+ calTitle:'{a} → {b} 요금 달력',lowest:'최저가',onDate:'날짜',average:'평균 요금',bestOff:'최대 할인 폭',days:'{n}일',lvLow:'저렴',lvMid:'보통',lvHigh:'비쌈',legendSel:'선택한 날짜',
+ results:'날짜별 최저가 항공권',count:'요금이 있는 날 {n}일',sortDate:'날짜순',sortPrice:'낮은 가격순',sortOff:'할인 폭순',directOnly:'직항만',allAir:'모든 항공사',
+ out:'가는 편',ret:'오는 편',direct:'직항',stops:'경유 {n}회',dep:'{t} 출발',stay:'{n}박',
+ perAdultOW:'/ 성인 1명 · 편도',perAdultRT:'/ 성인 1명 · 왕복',total:'성인 {n}명: {p}',kidNote:'소아·유아 요금은 예약 시 표시',avg:'노선 평균: {p}',off:'−{n}%',offTitle:'노선 평균보다 {n}% 저렴',cheapest:'최저가',view:'항공권 보기',bizAir:'항공사는 예약 시 표시',
+ noFare:'최근 업데이트에 이 조건의 요금이 없습니다.',noBiz:'이 노선의 비즈니스석 요금이 아직 데이터에 없습니다.',searchDirect:'Aviasales에서 직접 검색',noDirect:'데이터에 직항이 없습니다. "직항만"을 해제하세요.',more:'더 보기',
+ destTitle:'{city} 출발 저렴한 여행지',destSub:'눌러서 이 노선을 선택하세요.',destFrom:'최저가 {d}',
+ howTitle:'이 페이지의 요금 안내',
+ how1:'요금은 각 업데이트 전 48시간 동안 Aviasales 이용자가 찾은 최저가이며 성인 1명 기준입니다. 변동되었을 수 있으니 예약 전 반드시 확인하세요.',
+ how2:'"−%"는 같은 노선·같은 요금 유형의 향후 2개월 평균보다 얼마나 저렴한지를 뜻합니다. 항공사가 발표한 할인율이 아닙니다.',
+ how3:'소아·유아 요금은 데이터에 없습니다. "항공권 보기"를 누르면 예약 사이트가 선택한 성인·소아·유아 인원으로 계산합니다.',
+ how4:'최저가 항공권은 위탁 수하물 미포함, 변경·환불 불가이며 여행사 판매일 수 있습니다. 결제 전 운임 규정을 꼭 확인하세요.',
+ how5:'달러·원·엔·위안 금액은 업데이트 시점 환율로 환산한 근사치이며, 원래 요금은 베트남 동입니다.',
+ foot1:'요금 데이터: Aviasales (Travelpayouts 제공). 하루 여러 번 자동 업데이트.',foot2:'SănKM은 항공권을 판매하지 않습니다. "항공권 보기"를 누르면 제휴 사이트에서 예약합니다.'}
+};
+var LOCALE={vi:'vi-VN',en:'en-GB',zh:'zh-CN',ja:'ja-JP',ko:'ko-KR'};
+var CUR_DEFAULT={vi:'VND',en:'USD',zh:'CNY',ja:'JPY',ko:'KRW'};
 
-  var duLieu=null;
-  var tt={from:null,to:null,sort:'date',direct:false,chon:null,hien:MOI_LAN_HIEN};
+/* ========== TÊN SÂN BAY, THÀNH PHỐ ========== */
+// [tiếng Việt, English, 中文, 日本語, 한국어, thuộc Việt Nam?]
+var CITY={
+HAN:['Hà Nội','Hanoi','河内','ハノイ','하노이',1],SGN:['TP. Hồ Chí Minh','Ho Chi Minh City','胡志明市','ホーチミン','호찌민',1],DAD:['Đà Nẵng','Da Nang','岘港','ダナン','다낭',1],
+VDO:['Vân Đồn (Quảng Ninh)','Van Don (Ha Long)','云屯（下龙）','ヴァンドン（ハロン）','반돈 (하롱)',1],HPH:['Hải Phòng','Hai Phong','海防','ハイフォン','하이퐁',1],PQC:['Phú Quốc','Phu Quoc','富国岛','フーコック','푸꾸옥',1],
+CXR:['Nha Trang (Cam Ranh)','Nha Trang (Cam Ranh)','芽庄（金兰）','ニャチャン（カムラン）','나트랑 (깜라인)',1],DLI:['Đà Lạt','Da Lat','大叻','ダラット','달랏',1],HUI:['Huế','Hue','顺化','フエ','후에',1],VCA:['Cần Thơ','Can Tho','芹苴','カントー','껀터',1],
+SEL:['Seoul','Seoul','首尔','ソウル','서울',0],TYO:['Tokyo','Tokyo','东京','東京','도쿄',0],TPE:['Đài Bắc','Taipei','台北','台北','타이베이',0],BKK:['Bangkok','Bangkok','曼谷','バンコク','방콕',0],
+SIN:['Singapore','Singapore','新加坡','シンガポール','싱가포르',0],KUL:['Kuala Lumpur','Kuala Lumpur','吉隆坡','クアラルンプール','쿠알라룸푸르',0],HKG:['Hồng Kông','Hong Kong','香港','香港','홍콩',0],
+SHA:['Thượng Hải','Shanghai','上海','上海','상하이',0],CAN:['Quảng Châu','Guangzhou','广州','広州','광저우',0]
+};
+var LIDX={vi:0,en:1,zh:2,ja:3,ko:4};
+var AIRLINE={VN:'Vietnam Airlines',VJ:'Vietjet Air',QH:'Bamboo Airways',VU:'Vietravel Airlines',BL:'Pacific Airlines',KE:'Korean Air',OZ:'Asiana Airlines','7C':'Jeju Air',LJ:'Jin Air',TW:"T'way Air",BX:'Air Busan',RS:'Air Seoul',ZE:'Eastar Jet',
+ JL:'Japan Airlines',NH:'ANA',MM:'Peach',TG:'Thai Airways',FD:'Thai AirAsia',VZ:'Thai Vietjet',AK:'AirAsia',D7:'AirAsia X',SQ:'Singapore Airlines',TR:'Scoot','3K':'Jetstar Asia',CI:'China Airlines',BR:'EVA Air',IT:'Tigerair Taiwan',JX:'Starlux',
+ CX:'Cathay Pacific',UO:'HK Express',HX:'Hong Kong Airlines',MU:'China Eastern',CZ:'China Southern',CA:'Air China',FM:'Shanghai Airlines',HO:'Juneyao Air','9C':'Spring Airlines',MH:'Malaysia Airlines',OD:'Batik Air Malaysia',PR:'Philippine Airlines','5J':'Cebu Pacific'};
 
-  function veCuaChang(){
-    var ds=(duLieu&&duLieu.chang[tt.from+'-'+tt.to])||[];
-    if(tt.direct) ds=ds.filter(function(v){return !v.so_diem_dung;});
-    return ds;
-  }
+/* ========== TIỆN ÍCH ========== */
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function fmt(s,o){return String(s).replace(/\{(\w+)\}/g,function(m,k){return o&&o[k]!=null?o[k]:'';});}
+function t(k,o){var d=T[st.lang]||T.vi;return fmt(d[k]!=null?d[k]:T.vi[k],o);}
+function city(c){var x=CITY[c];return x?x[LIDX[st.lang]]:c;}
+function isVN(c){var x=CITY[c];return x?x[5]===1:false;}
+function pad(n){return (n<10?'0':'')+n;}
+function dOf(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+function isoLocal(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function fmtDate(s,opt){try{return new Intl.DateTimeFormat(LOCALE[st.lang],opt).format(dOf(s));}catch(e){return s;}}
+function dShort(s){return fmtDate(s,{weekday:'short',day:'numeric',month:'numeric'});}
+function dLong(s){return fmtDate(s,{weekday:'long',day:'numeric',month:'long'});}
+function dur(m){if(!m)return '';var h=Math.floor(m/60),mi=m%60;return st.lang==='vi'?(h?h+' giờ ':'')+(mi?mi+' phút':''):st.lang==='zh'?(h?h+'小时':'')+(mi?mi+'分钟':''):st.lang==='ja'?(h?h+'時間':'')+(mi?mi+'分':''):st.lang==='ko'?(h?h+'시간 ':'')+(mi?mi+'분':''):(h?h+'h ':'')+(mi?mi+'m':'');}
+function nights(a,b){return Math.round((dOf(b)-dOf(a))/86400000);}
+function money(vnd){
+  var c=st.cur,v=vnd,approx=false;
+  if(c!=='VND'){var r=DATA&&DATA.ty_gia&&DATA.ty_gia[c];if(r){v=vnd*r;approx=true;}else{c='VND';}}
+  var s;try{s=new Intl.NumberFormat(LOCALE[st.lang],{style:'currency',currency:c,maximumFractionDigits:(c==='USD'||c==='EUR')&&v<10?1:0}).format(v);}catch(e){s=Math.round(v)+' '+c;}
+  return (approx?'≈ ':'')+s;
+}
+function median(arr){if(!arr.length)return 0;var s=arr.slice().sort(function(a,b){return a-b;});var m=Math.floor(s.length/2);return s.length%2?s[m]:(s[m-1]+s[m])/2;}
 
-  function dienChonDiemDi(){
-    var di={};
-    Object.keys(duLieu.chang).forEach(function(k){if(duLieu.chang[k].length){di[k.split('-')[0]]=1;}});
-    var ds=Object.keys(di).sort(function(a,b){return tenSB(a).localeCompare(tenSB(b),'vi');});
-    var s=$('from'); s.innerHTML='';
-    ds.forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=tenSB(c)+' ('+c+')';s.appendChild(o);});
-    if(!tt.from||!di[tt.from]) tt.from=di.HAN?'HAN':ds[0];
-    s.value=tt.from;
-  }
-  function dienChonDiemDen(){
-    var den=[];
-    Object.keys(duLieu.chang).forEach(function(k){var p=k.split('-');if(p[0]===tt.from&&duLieu.chang[k].length)den.push(p[1]);});
-    den.sort(function(a,b){return tenSB(a).localeCompare(tenSB(b),'vi');});
-    var s=$('to'); s.innerHTML='';
-    den.forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=tenSB(c)+' ('+c+')';s.appendChild(o);});
-    if(den.indexOf(tt.to)<0) tt.to=den.indexOf('SGN')>=0?'SGN':den[0];
-    s.value=tt.to;
-  }
+/* ========== TRẠNG THÁI ========== */
+var DATA=null;
+var store={get:function(k){try{return localStorage.getItem(k);}catch(e){return null;}},set:function(k,v){try{localStorage.setItem(k,v);}catch(e){}}};
+function guessLang(){var q=(location.search.match(/[?&]lang=(\w\w)/)||[])[1];if(q&&T[q])return q;var s=store.get('sankm-lang');if(s&&T[s])return s;var n=(navigator.language||'vi').slice(0,2);return T[n]?n:'vi';}
+var st={lang:guessLang(),cur:null,trip:'ow',cabin:'eco',from:null,to:null,sel:null,a:1,c:0,i:0,sort:'date',direct:false,air:null,show:20};
+st.cur=store.get('sankm-cur')||CUR_DEFAULT[st.lang];
+var today=isoLocal(new Date());
 
-  function veThongKe(ds){
-    var box=$('stats'); box.innerHTML='';
-    if(!ds.length)return;
-    var re=ds[0],tong=0;
-    ds.forEach(function(v){if(v.gia<re.gia)re=v;tong+=v.gia;});
-    var d=ngayTu(re.ngay);
-    var muc=[
-      ['Giá rẻ nhất',tien(re.gia),'good'],
-      ['Vào ngày',THU[d.getDay()]+' '+hai(d.getDate())+'/'+hai(d.getMonth()+1),''],
-      ['Giá trung bình',tien(tong/ds.length),''],
-      ['Số ngày có giá',ds.length+' ngày','']
-    ];
-    muc.forEach(function(m){
-      var e=document.createElement('div');e.className='stat';
-      var a=document.createElement('span');a.textContent=m[0];
-      var b=document.createElement('b');b.textContent=m[1];if(m[2])b.className=m[2];
-      e.appendChild(a);e.appendChild(b);box.appendChild(e);
-    });
-  }
+function kind(){return st.cabin==='biz'?(st.trip==='rt'?'thuong_gia_kh':'thuong_gia_mc'):(st.trip==='rt'?'khu_hoi':'mot_chieu');}
+function routeData(o,d){var r=DATA&&DATA.chang&&DATA.chang[o+'-'+d];if(!r)return null;if(Array.isArray(r))return {mot_chieu:r};return r;}
+function faresOf(o,d,k){var r=routeData(o,d);var a=(r&&r[k||kind()])||[];return a.filter(function(v){return v.ngay>=today;}).map(function(v){return {ngay:v.ngay,gio:v.gio||'',gia:v.gia,hang:v.hang||'',so_hieu:v.so_hieu||'',phut:v.phut||0,dung:v.dung||0,ngay_ve:v.ngay_ve||'',gio_ve:v.gio_ve||'',dung_ve:v.dung_ve||0,duong_dan:v.duong_dan||''};});}
+function withOff(list){var md=median(list.map(function(v){return v.gia;}));list.forEach(function(v){v.off=md>0?Math.round((md-v.gia)/md*100):0;v.md=md;});return list;}
+function routesFrom(o){var out=[];if(!DATA)return out;Object.keys(DATA.chang).forEach(function(k){var p=k.split('-');if(p[0]===o)out.push(p[1]);});return out;}
+function origins(){var s={};if(DATA)Object.keys(DATA.chang).forEach(function(k){s[k.split('-')[0]]=1;});return Object.keys(s);}
 
-  function veLich(ds){
-    var box=$('cal'); box.innerHTML='';
-    if(!ds.length)return;
-    var min=Infinity; ds.forEach(function(v){if(v.gia<min)min=v.gia;});
-    ds.forEach(function(v){
-      var d=ngayTu(v.ngay);
-      var b=document.createElement('button'); b.type='button';
-      b.className='day'+(v.gia===min?' cheap':'')+(v.ngay===tt.chon?' sel':'');
-      b.setAttribute('aria-pressed',v.ngay===tt.chon?'true':'false');
-      b.setAttribute('aria-label',THU[d.getDay()]+' '+hai(d.getDate())+'/'+hai(d.getMonth()+1)+', '+tien(v.gia));
-      b.innerHTML='<span class="d1">'+THU_NGAN[d.getDay()]+'</span><span class="d2">'+hai(d.getDate())+'/'+hai(d.getMonth()+1)+'</span><span class="d3">'+Math.round(v.gia/1000)+'k</span>';
-      b.addEventListener('click',function(){
-        tt.chon=v.ngay; tt.sort='date'; dongBoNutSapXep();
-        var vt=0; veCuaChang().forEach(function(x,i){if(x.ngay===v.ngay)vt=i;});
-        if(vt>=tt.hien) tt.hien=vt+5;
-        veTatCa(true);
-      });
-      box.appendChild(b);
-    });
-  }
+function bookLink(v){
+  var base='https://www.aviasales.com/search/';
+  var useApi=v.duong_dan&&st.a===1&&st.c===0&&st.i===0&&st.cabin==='eco';
+  if(useApi)return v.duong_dan;
+  var dm=function(s){return s.slice(8,10)+s.slice(5,7);};
+  var p=st.from+dm(v.ngay)+st.to+(st.trip==='rt'&&v.ngay_ve?dm(v.ngay_ve):'')+(st.cabin==='biz'?'c':'')+st.a+((st.c||st.i)?(''+st.c+st.i):'');
+  return base+p;
+}
+function searchLink(){
+  var dm=function(s){return s.slice(8,10)+s.slice(5,7);};var d=st.sel||($('date').value||today);
+  return 'https://www.aviasales.com/search/'+st.from+dm(d)+st.to+(st.cabin==='biz'?'c':'')+st.a+((st.c||st.i)?(''+st.c+st.i):'');
+}
 
-  function veDanhSach(ds){
-    var list=$('list'); list.innerHTML='';
-    if(!ds.length){
-      var e=document.createElement('div');e.className='empty';
-      e.textContent=tt.direct?'Chưa có giá vé bay thẳng cho chặng này. Bỏ lọc "Chỉ bay thẳng" để xem thêm.':'Chưa có giá cho chặng này trong lần cập nhật gần nhất.';
-      list.appendChild(e); $('more').hidden=true; return;
-    }
-    var sx=ds.slice();
-    if(tt.sort==='price') sx.sort(function(a,b){return a.gia-b.gia;});
-    var min=Infinity; ds.forEach(function(v){if(v.gia<min)min=v.gia;});
-    sx.slice(0,tt.hien).forEach(function(v){
-      var d=ngayTu(v.ngay);
-      var el=document.createElement('article'); el.className='fl'+(v.ngay===tt.chon?' sel':''); el.id='ve-'+v.ngay;
-      var dung=v.so_diem_dung?('Có '+v.so_diem_dung+' điểm dừng'):'Bay thẳng';
-      el.innerHTML='<div class="when"><b></b><small></small></div><div class="info"><b></b><small></small></div><div class="buy"><div class="pr"></div></div>';
-      el.querySelector('.when b').textContent=THU[d.getDay()]+', '+hai(d.getDate())+'/'+hai(d.getMonth()+1)+'/'+d.getFullYear();
-      el.querySelector('.when small').textContent='Cất cánh '+v.gio;
-      el.querySelector('.info b').textContent=tenHang(v.hang)+(v.so_hieu?' · '+v.so_hieu:'');
-      el.querySelector('.info small').textContent=dung+(v.thoi_gian_phut?' · '+thoiGian(v.thoi_gian_phut):'');
-      var pr=el.querySelector('.pr');
-      if(v.gia===min){var bd=document.createElement('span');bd.className='badge';bd.textContent='Rẻ nhất';pr.appendChild(bd);}
-      var st=document.createElement('strong');st.textContent=tien(v.gia);pr.appendChild(st);
-      if(v.duong_dan){
-        var a=document.createElement('a');a.className='btn';a.href=v.duong_dan;a.target='_blank';a.rel='noopener';a.textContent='Xem vé';
-        el.querySelector('.buy').appendChild(a);
-      }
-      list.appendChild(el);
-    });
-    $('more').hidden=sx.length<=tt.hien;
-  }
+/* ========== VẼ GIAO DIỆN ========== */
+function applyText(){
+  document.documentElement.lang=st.lang;
+  Array.prototype.forEach.call(document.querySelectorAll('[data-t]'),function(el){el.textContent=t(el.getAttribute('data-t'));});
+  Array.prototype.forEach.call(document.querySelectorAll('[data-tl]'),function(el){el.setAttribute('aria-label',t(el.getAttribute('data-tl')));});
+  $('lang').value=st.lang;
+}
+function fillCur(){
+  var s=$('cur'),opts=['VND'];
+  if(DATA&&DATA.ty_gia)['USD','KRW','JPY','CNY','EUR'].forEach(function(c){if(DATA.ty_gia[c])opts.push(c);});
+  if(opts.indexOf(st.cur)<0)st.cur='VND';
+  s.innerHTML=opts.map(function(c){return '<option value="'+c+'">'+c+'</option>';}).join('');s.value=st.cur;
+}
+function optList(codes){
+  var vn=codes.filter(isVN),it=codes.filter(function(c){return !isVN(c);});
+  var srt=function(a,b){return city(a).localeCompare(city(b),LOCALE[st.lang]);};vn.sort(srt);it.sort(srt);
+  var g=function(lbl,arr){return arr.length?'<optgroup label="'+esc(lbl)+'">'+arr.map(function(c){return '<option value="'+c+'">'+esc(city(c))+' ('+c+')</option>';}).join('')+'</optgroup>':'';};
+  return g(t('vn'),vn)+g(t('intl'),it);
+}
+function fillSelects(){
+  var os=origins();if(!os.length)return;
+  if(!st.from||os.indexOf(st.from)<0)st.from=os.indexOf('HAN')>=0?'HAN':os[0];
+  $('from').innerHTML=optList(os);$('from').value=st.from;
+  var ds=routesFrom(st.from);
+  if(!st.to||ds.indexOf(st.to)<0)st.to=ds.indexOf('SGN')>=0?'SGN':ds[0];
+  $('to').innerHTML=optList(ds);$('to').value=st.to;
+}
+function paxText(){
+  var cab=st.cabin==='biz'?t('business'):t('economy');
+  return t('paxSum',{a:st.a,as:st.a>1?'s':'',c:st.c?t('paxC',{n:st.c,cs:st.c>1?'ren':''}):'',i:st.i?t('paxI',{n:st.i,is:st.i>1?'s':''}):'',cab:cab});
+}
+function syncPax(){
+  $('pa').textContent=st.a;$('pc').textContent=st.c;$('pi').textContent=st.i;$('paxbtn').textContent=paxText();
+  var tot=st.a+st.c;
+  document.querySelector('[data-p="a"][data-d="-1"]').disabled=st.a<=1||st.i>=st.a;
+  document.querySelector('[data-p="a"][data-d="1"]').disabled=tot>=9;
+  document.querySelector('[data-p="c"][data-d="-1"]').disabled=st.c<=0;
+  document.querySelector('[data-p="c"][data-d="1"]').disabled=tot>=9;
+  document.querySelector('[data-p="i"][data-d="-1"]').disabled=st.i<=0;
+  document.querySelector('[data-p="i"][data-d="1"]').disabled=st.i>=st.a;
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cabin]'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-cabin')===st.cabin?'true':'false');});
+  Array.prototype.forEach.call(document.querySelectorAll('[data-trip]'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-trip')===st.trip?'true':'false');});
+}
 
-  function veDiemDen(){
-    $('dest-from').textContent=tenSB(tt.from);
-    var box=$('dest'); box.innerHTML='';
-    var hang=[];
-    Object.keys(duLieu.chang).forEach(function(k){
-      var p=k.split('-'); if(p[0]!==tt.from)return;
-      var ds=duLieu.chang[k]; if(!ds.length)return;
-      var re=ds[0]; ds.forEach(function(v){if(v.gia<re.gia)re=v;});
-      hang.push({den:p[1],v:re});
-    });
-    hang.sort(function(a,b){return a.v.gia-b.v.gia;});
-    hang.forEach(function(h){
-      var d=ngayTu(h.v.ngay);
-      var b=document.createElement('button');b.type='button';b.className='dc';
-      var t=document.createElement('b');t.textContent=tenSB(h.den);
-      var s=document.createElement('span');s.textContent='Rẻ nhất '+THU[d.getDay()]+' '+hai(d.getDate())+'/'+hai(d.getMonth()+1);
-      var g=document.createElement('strong');g.textContent=tien(h.v.gia);
-      b.appendChild(t);b.appendChild(s);b.appendChild(g);
-      b.addEventListener('click',function(){tt.to=h.den;$('to').value=h.den;tt.chon=h.v.ngay;tt.hien=MOI_LAN_HIEN;veTatCa(false);window.scrollTo(0,$('cal-h').getBoundingClientRect().top+window.pageYOffset-16);});
-      box.appendChild(b);
-    });
-  }
-
-  function veTatCa(cuonToiVe){
-    var ds=veCuaChang();
-    if(!tt.chon||!ds.some(function(v){return v.ngay===tt.chon;})){
-      var re=null; ds.forEach(function(v){if(!re||v.gia<re.gia)re=v;}); tt.chon=re?re.ngay:null;
-    }
-    $('cal-h').textContent='Lịch giá '+tenSB(tt.from)+' → '+tenSB(tt.to);
-    veThongKe(ds); veLich(ds); veDanhSach(ds); veDiemDen();
-    setTimeout(function(){
-      var s=$('cal').querySelector('.sel');
-      if(s&&s.scrollIntoView){try{s.scrollIntoView({block:'nearest',inline:'center'});}catch(e){}}
-      if(cuonToiVe){var v=$('ve-'+tt.chon);if(v&&v.scrollIntoView){try{v.scrollIntoView({block:'center'});}catch(e){}}}
-    },0);
-  }
-
-  function dongBoNutSapXep(){
-    Array.prototype.forEach.call(document.querySelectorAll('[data-sort]'),function(o){o.setAttribute('aria-pressed',o.getAttribute('data-sort')===tt.sort?'true':'false');});
-  }
-
-  function baoLoi(chu){var n=$('notice');n.textContent=chu;n.hidden=false;}
-
-  $('from').addEventListener('change',function(){tt.from=this.value;dienChonDiemDen();tt.chon=null;tt.hien=MOI_LAN_HIEN;veTatCa(false);});
-  $('to').addEventListener('change',function(){tt.to=this.value;tt.chon=null;tt.hien=MOI_LAN_HIEN;veTatCa(false);});
-  $('swap').addEventListener('click',function(){
-    var cu=tt.from; tt.from=tt.to; tt.to=cu;
-    if(!duLieu.chang[tt.from+'-'+tt.to]){baoLoi('Chưa có giá cho chiều ngược lại của chặng này.');tt.to=tt.from;tt.from=cu;return;}
-    $('notice').hidden=true;
-    dienChonDiemDi(); $('from').value=tt.from; dienChonDiemDen(); $('to').value=tt.to;
-    tt.chon=null; tt.hien=MOI_LAN_HIEN; veTatCa(false);
+function renderDeals(){
+  $('deals-h').textContent=t('deals',{city:city(st.from)});
+  var box=$('deals'),out=[];
+  routesFrom(st.from).forEach(function(d){
+    var l=withOff(faresOf(st.from,d));if(l.length<4)return;
+    var best=null;l.forEach(function(v){if(!best||v.off>best.off||(v.off===best.off&&v.gia<best.gia))best=v;});
+    if(best&&best.off>=10)out.push({to:d,v:best});
   });
-  Array.prototype.forEach.call(document.querySelectorAll('[data-sort]'),function(b){b.addEventListener('click',function(){tt.sort=b.getAttribute('data-sort');dongBoNutSapXep();veDanhSach(veCuaChang());});});
-  $('direct').addEventListener('click',function(){tt.direct=!tt.direct;this.setAttribute('aria-pressed',tt.direct?'true':'false');tt.chon=null;veTatCa(false);});
-  $('more').addEventListener('click',function(){tt.hien+=MOI_LAN_HIEN;veDanhSach(veCuaChang());});
+  out.sort(function(a,b){return b.v.off-a.v.off;});
+  if(!out.length){box.innerHTML='<p class="hint">'+esc(t('noDeals'))+'</p>';return;}
+  box.innerHTML=out.slice(0,10).map(function(x,i){
+    return '<button type="button" class="deal" data-i="'+i+'"><span class="to">'+esc(city(x.to))+'</span><span class="when">'+esc(dShort(x.v.ngay))+(x.v.ngay_ve?' → '+esc(dShort(x.v.ngay_ve)):'')+'</span>'+
+      '<span class="row"><strong class="num">'+esc(money(x.v.gia))+'</strong><span class="badge b-off" title="'+esc(t('offTitle',{n:x.v.off}))+'">'+esc(t('off',{n:x.v.off}))+'</span></span></button>';
+  }).join('');
+  Array.prototype.forEach.call(box.querySelectorAll('.deal'),function(b){b.addEventListener('click',function(){var x=out[+b.getAttribute('data-i')];st.to=x.to;st.sel=x.v.ngay;st.show=20;fillSelects();renderRoute(true);});});
+}
 
-  fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(function(r){
-    if(!r.ok) throw new Error('Không đọc được tệp dữ liệu (mã '+r.status+').');
-    return r.json();
-  }).then(function(d){
-    duLieu=d;
-    if(!d.cap_nhat_luc||!Object.keys(d.chang||{}).length){
-      $('stamp').textContent='Chưa có dữ liệu giá';
-      baoLoi('Chưa có lần cập nhật giá nào. Hãy chạy tác vụ "Cập nhật giá vé" trên GitHub.');
-      return;
-    }
-    var t=new Date(d.cap_nhat_luc);
-    var cachGio=(Date.now()-t.getTime())/3600000;
-    $('stamp').textContent='Giá cập nhật lúc '+hai(t.getHours())+':'+hai(t.getMinutes())+' ngày '+hai(t.getDate())+'/'+hai(t.getMonth()+1);
-    if(cachGio>8){$('dot').className='dot old';baoLoi('Giá đã cũ hơn 8 giờ, lần cập nhật tự động gần đây có thể bị lỗi.');}
-    dienChonDiemDi(); dienChonDiemDen(); veTatCa(false);
-  }).catch(function(e){
-    $('stamp').textContent='Không tải được giá';
-    baoLoi(e.message);
-  });
+function renderRoute(scroll){
+  var l=withOff(faresOf(st.from,st.to));
+  $('cal-h').textContent=t('calTitle',{a:city(st.from),b:city(st.to)});
+  if(st.sel&&!l.some(function(v){return v.ngay===st.sel;}))st.sel=null;
+  if(!st.sel&&l.length){var re=l[0];l.forEach(function(v){if(v.gia<re.gia)re=v;});st.sel=re.ngay;}
+  if(st.sel)$('date').value=st.sel;
+  // Ô số liệu
+  var sb=$('stats');
+  if(l.length){
+    var re2=l[0],bo=l[0];l.forEach(function(v){if(v.gia<re2.gia)re2=v;if(v.off>bo.off)bo=v;});
+    var cells=[[t('lowest'),money(re2.gia),'good'],[t('onDate'),dShort(re2.ngay),''],[t('average'),money(re2.md),''],[t('bestOff'),bo.off>0?t('off',{n:bo.off}):'—','good']];
+    sb.innerHTML=cells.map(function(c){return '<div class="stat"><span>'+esc(c[0])+'</span><b class="num '+c[2]+'">'+esc(c[1])+'</b></div>';}).join('');
+  }else sb.innerHTML='';
+  // Lịch giá: chia 3 mức theo giá
+  var cal=$('cal');
+  var ps=l.map(function(v){return v.gia;}).sort(function(a,b){return a-b;});
+  var q1=ps[Math.floor(ps.length/3)]||0,q2=ps[Math.floor(ps.length*2/3)]||0;
+  cal.innerHTML=l.map(function(v){
+    var lv=v.gia<=q1?1:(v.gia<=q2?2:3);var k=Math.round(v.gia/1000);
+    var short=st.cur==='VND'?(k>=1000?(Math.round(k/100)/10)+'tr':k+'k'):money(v.gia).replace('≈ ','');
+    if(st.cur==='VND'&&st.lang!=='vi')short=(k>=1000?(Math.round(k/100)/10)+'M':k+'K');
+    return '<button type="button" class="day lv'+lv+(v.ngay===st.sel?' sel':'')+'" data-d="'+v.ngay+'" aria-pressed="'+(v.ngay===st.sel)+'" aria-label="'+esc(dLong(v.ngay)+', '+money(v.gia))+'">'+
+      '<span class="d1">'+esc(fmtDate(v.ngay,{weekday:'short'}))+'</span><span class="d2 num">'+esc(fmtDate(v.ngay,{day:'numeric',month:'numeric'}))+'</span><span class="d3 num">'+esc(short)+'</span></button>';
+  }).join('');
+  Array.prototype.forEach.call(cal.querySelectorAll('.day'),function(b){b.addEventListener('click',function(){st.sel=b.getAttribute('data-d');var idx=sorted().map(function(v){return v.ngay;}).indexOf(st.sel);if(idx>=st.show)st.show=idx+5;renderRoute(true);});});
+  renderAirChips(l);
+  renderList();
+  renderDest();
+  setTimeout(function(){
+    var s=cal.querySelector('.sel');if(s){cal.scrollLeft=s.offsetLeft-cal.offsetLeft-(cal.clientWidth-s.clientWidth)/2;}
+    if(scroll){var f=$('f-'+st.sel);if(f){try{f.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}}}
+  },0);
+}
+
+function renderAirChips(l){
+  var box=$('airChips');var set={};l.forEach(function(v){if(v.hang)set[v.hang]=(set[v.hang]||0)+1;});
+  var keys=Object.keys(set).sort(function(a,b){return set[b]-set[a];});
+  if(st.air&&!set[st.air])st.air=null;
+  if(keys.length<2){box.innerHTML='';return;}
+  box.innerHTML='<button type="button" class="chip" data-air="" aria-pressed="'+(!st.air)+'">'+esc(t('allAir'))+'</button>'+keys.map(function(k){return '<button type="button" class="chip" data-air="'+esc(k)+'" aria-pressed="'+(st.air===k)+'">'+esc(AIRLINE[k]||k)+'</button>';}).join('');
+  Array.prototype.forEach.call(box.querySelectorAll('[data-air]'),function(b){b.addEventListener('click',function(){st.air=b.getAttribute('data-air')||null;renderAirChips(withOff(faresOf(st.from,st.to)));renderList();});});
+}
+
+function sorted(){
+  var l=withOff(faresOf(st.from,st.to));
+  if(st.direct)l=l.filter(function(v){return !v.dung&&!v.dung_ve;});
+  if(st.air)l=l.filter(function(v){return v.hang===st.air;});
+  if(st.sort==='price')l.sort(function(a,b){return a.gia-b.gia;});
+  else if(st.sort==='off')l.sort(function(a,b){return b.off-a.off;});
+  return l;
+}
+
+function legHtml(label,date,time,stops,mins,showDur){
+  var s=stops?'<span class="stp">'+esc(t('stops',{n:stops}))+'</span>':'<span class="dir">'+esc(t('direct'))+'</span>';
+  var parts=[];if(time)parts.push(esc(t('dep',{t:time})));if(showDur&&mins)parts.push(esc(dur(mins)));parts.push(s);
+  return '<div class="leg"><span class="lt">'+esc(label)+'</span><span class="dt">'+esc(dShort(date))+'</span><span class="info">'+parts.join(' · ')+'</span></div>';
+}
+
+function renderList(){
+  var list=$('list'),all=withOff(faresOf(st.from,st.to)),l=sorted();
+  $('resCount').textContent=all.length?t('count',{n:all.length}):'';
+  if(!l.length){
+    var msg=st.cabin==='biz'&&!all.length?t('noBiz'):(st.direct&&all.length?t('noDirect'):t('noFare'));
+    list.innerHTML='<div class="empty"><p>'+esc(msg)+'</p><a class="btn" target="_blank" rel="noopener" href="'+esc(searchLink())+'">'+esc(t('searchDirect'))+'</a></div>';
+    $('more').hidden=true;return;
+  }
+  var min=Infinity;all.forEach(function(v){if(v.gia<min)min=v.gia;});
+  list.innerHTML=l.slice(0,st.show).map(function(v){
+    var biz=st.cabin==='biz';
+    var logo=v.hang?'<span class="logo"><img alt="" loading="lazy" src="https://pics.avs.io/80/80/'+encodeURIComponent(v.hang)+'.png" onerror="this.remove()">'+esc(v.hang)+'</span>':'<span class="logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l20-8-6 12-4-5-5 3 1-5z"/></svg></span>';
+    var name=v.hang?(AIRLINE[v.hang]||v.hang):t('bizAir');
+    var sub=[];if(v.so_hieu)sub.push(v.so_hieu);
+    var tags='';
+    if(v.gia===min)tags+='<span class="badge b-best">'+esc(t('cheapest'))+'</span>';
+    if(v.off>=5)tags+='<span class="badge b-off" title="'+esc(t('offTitle',{n:v.off}))+'">'+esc(t('off',{n:v.off}))+'</span>';
+    var legs=legHtml(t('out'),v.ngay,v.gio,v.dung,v.phut,true);
+    if(st.trip==='rt'&&v.ngay_ve){legs+=legHtml(t('ret'),v.ngay_ve,v.gio_ve,v.dung_ve,0,false);var n=nights(v.ngay,v.ngay_ve);if(n>0)legs+='<span class="hint">'+esc(t('stay',{n:n}))+'</span>';}
+    var tot=st.a>1?'<span class="tot num">'+esc(t('total',{n:st.a,p:money(v.gia*st.a)}))+'</span>':'';
+    var kid=(st.c||st.i)?'<span class="kid">'+esc(t('kidNote'))+'</span>':'';
+    return '<article class="fare'+(v.ngay===st.sel?' sel':'')+'" id="f-'+v.ngay+'">'+
+      '<div class="air">'+logo+'<span class="nm"><b>'+esc(name)+'</b><small>'+esc(sub.join(' · '))+'</small><span><span class="badge '+(biz?'b-biz':'b-eco')+'">'+esc(biz?t('business'):t('economy'))+'</span></span></span></div>'+
+      '<div class="legs">'+legs+'</div>'+
+      '<div class="price"><span class="tags">'+tags+'</span><strong class="num">'+esc(money(v.gia))+'</strong><span class="per">'+esc(st.trip==='rt'?t('perAdultRT'):t('perAdultOW'))+'</span>'+
+      '<span class="avg num">'+esc(t('avg',{p:money(v.md)}))+'</span>'+tot+kid+
+      '<a class="btn" target="_blank" rel="noopener" href="'+esc(bookLink(v))+'">'+esc(t('view'))+'</a></div></article>';
+  }).join('');
+  $('more').hidden=l.length<=st.show;
+}
+
+function renderDest(){
+  $('dest-h').textContent=t('destTitle',{city:city(st.from)});
+  var box=$('dest'),rows=[];
+  routesFrom(st.from).forEach(function(d){var l=faresOf(st.from,d);if(!l.length)return;var re=l[0];l.forEach(function(v){if(v.gia<re.gia)re=v;});rows.push({d:d,v:re});});
+  rows.sort(function(a,b){return a.v.gia-b.v.gia;});
+  box.innerHTML=rows.map(function(r,i){return '<button type="button" class="dc" data-i="'+i+'"><b>'+esc(city(r.d))+'</b><span>'+esc(t('destFrom',{d:dShort(r.v.ngay)}))+'</span><strong class="num">'+esc(money(r.v.gia))+'</strong></button>';}).join('');
+  Array.prototype.forEach.call(box.querySelectorAll('.dc'),function(b){b.addEventListener('click',function(){var r=rows[+b.getAttribute('data-i')];st.to=r.d;st.sel=r.v.ngay;st.show=20;fillSelects();renderRoute(false);window.scrollTo(0,$('cal-h').getBoundingClientRect().top+window.pageYOffset-16);});});
+}
+
+function renderStamp(){
+  if(!DATA||!DATA.cap_nhat_luc){$('stamp').textContent=t('noData');return;}
+  var d=new Date(DATA.cap_nhat_luc);
+  var s;try{s=new Intl.DateTimeFormat(LOCALE[st.lang],{hour:'2-digit',minute:'2-digit',day:'numeric',month:'numeric'}).format(d);}catch(e){s=d.toLocaleString();}
+  $('stamp').textContent=t('updated',{t:s});
+  var old=(Date.now()-d.getTime())/3600000>8;$('dot').className='dot'+(old?' old':'');
+  if(old)notice(t('stale'));
+}
+function notice(m){var n=$('notice');n.textContent=m;n.hidden=!m;}
+
+function renderAll(){applyText();syncPax();renderStamp();if(!DATA||!DATA.chang||!Object.keys(DATA.chang).length)return;fillCur();fillSelects();renderDeals();renderRoute(false);}
+
+/* ========== SỰ KIỆN ========== */
+$('lang').addEventListener('change',function(){st.lang=this.value;store.set('sankm-lang',st.lang);if(!store.get('sankm-cur')){st.cur=CUR_DEFAULT[st.lang];}renderAll();});
+$('cur').addEventListener('change',function(){st.cur=this.value;store.set('sankm-cur',st.cur);renderAll();});
+Array.prototype.forEach.call(document.querySelectorAll('[data-trip]'),function(b){b.addEventListener('click',function(){st.trip=b.getAttribute('data-trip');st.sel=null;st.show=20;syncPax();renderDeals();renderRoute(false);});});
+Array.prototype.forEach.call(document.querySelectorAll('[data-cabin]'),function(b){b.addEventListener('click',function(){st.cabin=b.getAttribute('data-cabin');st.sel=null;st.show=20;syncPax();renderDeals();renderRoute(false);});});
+Array.prototype.forEach.call(document.querySelectorAll('[data-p]'),function(b){b.addEventListener('click',function(){var k=b.getAttribute('data-p'),d=+b.getAttribute('data-d');st[k]+=d;if(st.a<1)st.a=1;if(st.c<0)st.c=0;if(st.i<0)st.i=0;if(st.i>st.a)st.i=st.a;if(st.a+st.c>9){st[k]-=d;}syncPax();renderList();});});
+function togglePax(open){var p=$('paxpanel');p.hidden=!open;$('paxbtn').setAttribute('aria-expanded',open?'true':'false');}
+$('paxbtn').addEventListener('click',function(){togglePax($('paxpanel').hidden);});
+$('paxdone').addEventListener('click',function(){togglePax(false);$('paxbtn').focus();});
+document.addEventListener('click',function(e){if(!$('paxpanel').hidden&&!e.target.closest('.paxwrap'))togglePax(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('paxpanel').hidden){togglePax(false);$('paxbtn').focus();}});
+$('from').addEventListener('change',function(){st.from=this.value;st.sel=null;st.show=20;fillSelects();renderDeals();renderRoute(false);});
+$('to').addEventListener('change',function(){st.to=this.value;st.sel=null;st.show=20;renderRoute(false);});
+$('swap').addEventListener('click',function(){if(!routeData(st.to,st.from))return;var a=st.from;st.from=st.to;st.to=a;st.sel=null;fillSelects();renderDeals();renderRoute(false);});
+$('date').addEventListener('change',function(){var v=this.value;if(!v)return;var l=faresOf(st.from,st.to);var pick=null;l.forEach(function(x){if(!pick&&x.ngay>=v)pick=x.ngay;});if(pick){st.sel=pick;var idx=sorted().map(function(x){return x.ngay;}).indexOf(pick);if(idx>=st.show)st.show=idx+5;renderRoute(true);}});
+$('go').addEventListener('click',function(){togglePax(false);renderRoute(true);var h=$('cal-h');window.scrollTo(0,h.getBoundingClientRect().top+window.pageYOffset-16);});
+Array.prototype.forEach.call(document.querySelectorAll('[data-sort]'),function(b){b.addEventListener('click',function(){st.sort=b.getAttribute('data-sort');Array.prototype.forEach.call(document.querySelectorAll('[data-sort]'),function(o){o.setAttribute('aria-pressed',o===b?'true':'false');});renderList();});});
+$('direct').addEventListener('click',function(){st.direct=!st.direct;this.setAttribute('aria-pressed',st.direct?'true':'false');renderList();});
+$('more').addEventListener('click',function(){st.show+=20;renderList();});
+
+/* ========== TẢI DỮ LIỆU ========== */
+renderAll();
+$('stamp').textContent=t('loading');
+fetch('data.json?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(d){
+  DATA=d;
+  if(!d.cap_nhat_luc||!d.chang||!Object.keys(d.chang).length){renderAll();notice(t('firstRun'));return;}
+  renderAll();
+}).catch(function(e){$('stamp').textContent=t('noData');notice(t('loadErr',{e:e.message}));});
 })();
 </script>
 </body>
